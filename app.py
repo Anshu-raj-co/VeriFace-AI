@@ -1,0 +1,566 @@
+import os
+import numpy as np
+import torch
+import torch.nn as nn
+from PIL import Image
+import streamlit as st
+
+from inference import (FAKE_AT_OR_ABOVE, REAL_BELOW, TEMPERATURE, calibrated_score, decide, load_checkpoint,
+                       preprocess)
+
+# ---------------------------------------------------------------------------
+# Page Configuration
+# ---------------------------------------------------------------------------
+st.set_page_config(
+    page_title="Face Authenticity Verifier",
+    page_icon="🛡️",
+    layout="wide",
+    initial_sidebar_state="collapsed",
+)
+
+BASE_DIR = os.path.dirname(os.path.abspath(__file__))
+MODEL_PATH = os.path.join(BASE_DIR, "best_face_model.pth")
+DEVICE = torch.device("cuda" if torch.cuda.is_available() else "cpu")
+
+ACCENT_REAL = "#2EA043"    # Emerald
+ACCENT_FAKE = "#F85149"    # Crimson
+ACCENT_NEUTRAL = "#8B949E" # Muted slate-blue
+ACCENT_WARN = "#D29922"    # Amber
+ACCENT_INFO = "#58A6FF"    # Accent blue
+
+BG_PRIMARY = "#0D1117"     # Dark canvas
+BG_SURFACE = "#161B22"     # Container surface
+BORDER_SLATE = "#30363D"   # Slate border
+TEXT_PRIMARY = "#F0F6FC"   # White text
+TEXT_SECONDARY = "#8B949E" # Muted text
+
+CUSTOM_CSS = f"""
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap');
+
+html, body, [class*="css"] {{
+    font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+}}
+
+#MainMenu, footer, header {{ visibility: hidden; }}
+
+.stApp, [data-testid="stAppViewContainer"], [data-testid="stHeader"] {{
+    background-color: {BG_PRIMARY} !important;
+    color: {TEXT_PRIMARY} !important;
+}}
+
+.block-container {{
+    padding-top: 2rem;
+    padding-bottom: 3rem;
+    max-width: 1220px;
+}}
+
+/* REAL WORKING CARDS: Styles Streamlit's native bordered container */
+[data-testid="stVerticalBlockBorderWrapper"] > div:first-child {{
+    background-color: {BG_SURFACE} !important;
+    border: 1px solid {BORDER_SLATE} !important;
+    border-top: 3px solid {ACCENT_INFO} !important;
+    border-radius: 12px !important;
+    padding: 1.25rem 1.4rem !important;
+    box-shadow: 0 4px 16px rgba(0, 0, 0, 0.4) !important;
+    margin-bottom: 1rem !important;
+}}
+
+/* Card Headers */
+.card-header {{
+    font-size: 0.8rem;
+    font-weight: 800;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: {ACCENT_INFO};
+    margin-bottom: 0.8rem;
+}}
+
+/* App Title */
+.app-header {{
+    display: flex;
+    align-items: center;
+    gap: 0.9rem;
+    margin-bottom: 0.2rem;
+}}
+.app-header .badge-icon {{ font-size: 2.2rem; }}
+.app-title {{
+    font-size: 2rem;
+    font-weight: 800;
+    color: {TEXT_PRIMARY};
+    margin: 0;
+    letter-spacing: -0.02em;
+}}
+.app-subtitle {{
+    color: {TEXT_SECONDARY};
+    font-size: 0.95rem;
+    margin: 0.2rem 0 0.8rem 0;
+}}
+.pipeline-tag {{
+    display: inline-block;
+    background: {BG_SURFACE};
+    color: {TEXT_SECONDARY};
+    border: 1px solid {BORDER_SLATE};
+    border-radius: 999px;
+    font-size: 0.74rem;
+    font-weight: 600;
+    padding: 0.22rem 0.7rem;
+    margin-bottom: 1.4rem;
+}}
+
+/* Metadata Chips */
+.stat-grid {{ display: flex; gap: 0.6rem; margin: 0.8rem 0; }}
+.stat-chip {{
+    flex: 1;
+    background: {BG_PRIMARY};
+    border: 1px solid {BORDER_SLATE};
+    border-radius: 8px;
+    padding: 0.55rem 0.75rem;
+}}
+.stat-label {{
+    font-size: 0.68rem;
+    font-weight: 600;
+    color: {TEXT_SECONDARY};
+    text-transform: uppercase;
+    letter-spacing: 0.04em;
+}}
+.stat-value {{
+    font-size: 0.95rem;
+    font-weight: 700;
+    color: {TEXT_PRIMARY};
+    margin-top: 0.1rem;
+}}
+
+/* Verdict Banner */
+.verdict-banner {{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 0.85rem 1.2rem;
+    border-radius: 10px;
+    font-weight: 800;
+    font-size: 1.15rem;
+    letter-spacing: 0.04em;
+    margin-bottom: 0.6rem;
+}}
+.verdict-real {{
+    background: rgba(46, 160, 67, 0.16);
+    color: {ACCENT_REAL};
+    border: 1px solid rgba(46, 160, 67, 0.45);
+}}
+.verdict-fake {{
+    background: rgba(248, 81, 73, 0.16);
+    color: {ACCENT_FAKE};
+    border: 1px solid rgba(248, 81, 73, 0.45);
+}}
+.verdict-pending {{
+    background: rgba(139, 148, 158, 0.15);
+    color: {TEXT_PRIMARY};
+    border: 1px solid {BORDER_SLATE};
+}}
+
+.confidence-display {{
+    font-size: 2.9rem;
+    font-weight: 800;
+    color: {TEXT_PRIMARY};
+    line-height: 1;
+    margin-top: 0.4rem;
+}}
+.confidence-sub {{
+    color: {TEXT_SECONDARY};
+    font-size: 0.84rem;
+    margin-bottom: 0.9rem;
+}}
+
+/* Probability Slider */
+.meter-track {{
+    position: relative;
+    height: 12px;
+    border-radius: 8px;
+    margin: 0.4rem 0;
+    background: linear-gradient(to right, {ACCENT_REAL} 0%, {ACCENT_WARN} 50%, {ACCENT_FAKE} 100%);
+}}
+.meter-pointer {{
+    position: absolute;
+    top: -5px;
+    width: 4px;
+    height: 22px;
+    background: #FFFFFF;
+    border-radius: 2px;
+    box-shadow: 0 0 4px rgba(0,0,0,0.9);
+    transform: translateX(-2px);
+}}
+.meter-legend {{
+    display: flex;
+    justify-content: space-between;
+    font-size: 0.7rem;
+    color: {TEXT_SECONDARY};
+    font-weight: 600;
+    margin-bottom: 1.2rem;
+}}
+
+/* Native Metrics Override */
+[data-testid="stMetric"] {{
+    background: {BG_PRIMARY} !important;
+    border: 1px solid {BORDER_SLATE} !important;
+    border-radius: 8px !important;
+    padding: 0.6rem 0.8rem !important;
+}}
+[data-testid="stMetricValue"] {{
+    font-weight: 800 !important;
+    color: {TEXT_PRIMARY} !important;
+    font-size: 1.2rem !important;
+}}
+[data-testid="stMetricLabel"] p {{
+    font-weight: 700 !important;
+    color: {TEXT_SECONDARY} !important;
+    font-size: 0.68rem !important;
+    text-transform: uppercase !important;
+    letter-spacing: 0.04em !important;
+}}
+div[data-testid="stHorizontalBlock"] {{ gap: 0.6rem !important; }}
+
+/* Button Styles */
+div.stButton button {{
+    border-radius: 8px !important;
+    font-weight: 700 !important;
+    padding: 0.6rem 0 !important;
+    border: 1px solid {BORDER_SLATE} !important;
+    background: {BG_SURFACE} !important;
+    color: {TEXT_PRIMARY} !important;
+}}
+div.stButton button[kind="primary"] {{
+    background: {ACCENT_REAL} !important;
+    border: 1px solid {ACCENT_REAL} !important;
+    color: #FFFFFF !important;
+}}
+div.stButton button:disabled {{
+    background: {BG_PRIMARY} !important;
+    color: {TEXT_SECONDARY} !important;
+    border: 1px solid {BORDER_SLATE} !important;
+}}
+
+/* File Uploader Dropzone */
+[data-testid="stFileUploaderDropzone"] {{
+    background: {BG_PRIMARY} !important;
+    border: 1px dashed {BORDER_SLATE} !important;
+    border-radius: 10px !important;
+}}
+[data-testid="stFileUploaderDropzone"] * {{ color: {TEXT_SECONDARY} !important; }}
+
+/* Checkbox Accent */
+[data-testid="stCheckbox"] label p {{ color: {TEXT_PRIMARY} !important; }}
+[data-testid="stCheckbox"] [data-checked="true"] {{
+    background-color: {ACCENT_INFO} !important;
+    border-color: {ACCENT_INFO} !important;
+}}
+
+/* Framed Images */
+[data-testid="stImage"] img {{
+    border-radius: 8px !important;
+    border: 1px solid {BORDER_SLATE} !important;
+}}
+</style>
+"""
+st.markdown(CUSTOM_CSS, unsafe_allow_html=True)
+
+# Preprocessing lives in inference.py: the same face crop (face_utils.crop_face_square, 256 px) and
+# CenterCrop(224) + ImageNet normalisation the model was trained and evaluated with.
+
+# ---------------------------------------------------------------------------
+# Model Loading
+# ---------------------------------------------------------------------------
+@st.cache_resource(show_spinner=False)
+def load_system():
+    # load_checkpoint refuses checkpoints that are not FAKE-positive (FAKE = 1, REAL = 0).
+    model, meta = load_checkpoint(MODEL_PATH, DEVICE)
+    return model, meta["backbone"], meta["model_type"]
+
+# ---------------------------------------------------------------------------
+# Grad-CAM Tool
+# ---------------------------------------------------------------------------
+def find_last_conv_layer(module: nn.Module):
+    last_conv = None
+    for m in module.modules():
+        if isinstance(m, nn.Conv2d):
+            last_conv = m
+    return last_conv
+
+class GradCAM:
+    def __init__(self, model: nn.Module):
+        self.model = model
+        target_layer = find_last_conv_layer(model.backbone)
+        if target_layer is None:
+            raise ValueError("Could not locate Conv2d layer in backbone.")
+        self._activations = None
+        self._gradients = None
+        self._fwd_handle = target_layer.register_forward_hook(self._save_activation)
+        self._bwd_handle = target_layer.register_full_backward_hook(self._save_gradient)
+
+    def _save_activation(self, module, inp, out):
+        self._activations = out.detach()
+
+    def _save_gradient(self, module, grad_in, grad_out):
+        self._gradients = grad_out[0].detach()
+
+    def generate(self, input_tensor: torch.Tensor):
+        self.model.zero_grad(set_to_none=True)
+        with torch.enable_grad():
+            logit = self.model(input_tensor)
+            # Checkpoints are trained with FAKE = 1, so the logit is evidence FOR "fake" and
+            # Grad-CAM highlights regions that pushed the score toward FAKE.
+            logit_value = float(logit.item())
+            logit.backward()
+
+        weights = self._gradients.mean(dim=(2, 3), keepdim=True)
+        cam = torch.relu((weights * self._activations).sum(dim=1, keepdim=True))
+        cam = cam.squeeze().cpu().numpy()
+
+        cam -= cam.min()
+        max_val = cam.max()
+        if max_val > 1e-8:
+            cam /= max_val
+        return cam, logit_value
+
+    def remove(self):
+        self._fwd_handle.remove()
+        self._bwd_handle.remove()
+
+def overlay_heatmap(base_image: Image.Image, cam: np.ndarray, alpha: float = 0.45) -> Image.Image:
+    import matplotlib
+
+    cam_img = Image.fromarray((cam * 255).astype(np.uint8)).resize(base_image.size, resample=Image.BILINEAR)
+    cam_arr = np.asarray(cam_img).astype(np.float32) / 255.0
+
+    colormap = matplotlib.colormaps["jet"]
+    heatmap_rgb = (colormap(cam_arr)[:, :, :3] * 255).astype(np.uint8)
+    heatmap_img = Image.fromarray(heatmap_rgb).convert("RGB")
+
+    base_rgb = base_image.convert("RGB")
+    return Image.blend(base_rgb, heatmap_img, alpha=alpha)
+
+# ---------------------------------------------------------------------------
+# Header Section
+# ---------------------------------------------------------------------------
+st.markdown(
+    """
+    <div class="app-header">
+        <span class="badge-icon">🛡️</span>
+        <h1 class="app-title">Face Authenticity Verification System</h1>
+    </div>
+    <p class="app-subtitle">Deep-learning image forensics for detecting AI-generated and manipulated facial imagery.</p>
+    <span class="pipeline-tag">Vision-only inference &middot; No demographic metadata used</span>
+    """,
+    unsafe_allow_html=True,
+)
+
+try:
+    model, loaded_backbone, loaded_model_type = load_system()
+    model_ready = True
+except Exception as exc:
+    model_ready = False
+    st.error(f"Model Unavailable: {exc}")
+
+if "analysis" not in st.session_state:
+    st.session_state["analysis"] = None
+if "last_upload_signature" not in st.session_state:
+    st.session_state["last_upload_signature"] = None
+
+col_left, col_right = st.columns([1, 1], gap="large")
+
+# ---------------------------------------------------------------------------
+# Left Column: User Input & Image Info
+# ---------------------------------------------------------------------------
+image = None
+face_check = None
+
+with col_left:
+    with st.container(border=True):
+        st.markdown('<div class="card-header">1 &middot; Input Image</div>', unsafe_allow_html=True)
+        
+        uploaded_file = st.file_uploader(
+            "Upload image file",
+            type=["jpg", "jpeg", "png"],
+            label_visibility="collapsed",
+            help="Accepted formats: JPG, JPEG, PNG.",
+        )
+
+        if uploaded_file is not None:
+            signature = (uploaded_file.name, uploaded_file.size)
+            if signature != st.session_state["last_upload_signature"]:
+                st.session_state["last_upload_signature"] = signature
+                st.session_state["analysis"] = None
+
+            try:
+                raw_image = Image.open(uploaded_file)
+                img_format = raw_image.format or "Unknown"
+                img_size = raw_image.size
+                image = raw_image.convert("RGB")
+            except Exception as exc:
+                st.error(f"Could not read image: {exc}")
+                image = None
+
+            if image is not None:
+                st.image(image, caption="Uploaded image", use_container_width=True)
+
+                st.markdown(
+                    f"""
+                    <div class="stat-grid">
+                        <div class="stat-chip">
+                            <div class="stat-label">Dimensions</div>
+                            <div class="stat-value">{img_size[0]} &times; {img_size[1]} px</div>
+                        </div>
+                        <div class="stat-chip">
+                            <div class="stat-label">Format</div>
+                            <div class="stat-value">{img_format}</div>
+                        </div>
+                        <div class="stat-chip">
+                            <div class="stat-label">File Size</div>
+                            <div class="stat-value">{uploaded_file.size / 1024:.1f} KB</div>
+                        </div>
+                    </div>
+                    """,
+                    unsafe_allow_html=True,
+                )
+                # Gate on the same detection the training face cropper uses (crop_face_square:
+                # Haar on a <=512 px copy, min face 40 px), so the gate accepts exactly the images
+                # the training pipeline treated as faces.
+                _, _, _, crop_info = preprocess(image)
+                face_check = {"has_face": crop_info["face_detected"], "num_faces": crop_info["num_faces"]}
+
+    if uploaded_file is not None and image is not None:
+        with st.container(border=True):
+            st.markdown('<div class="card-header">2 &middot; Face Detection Check</div>', unsafe_allow_html=True)
+            if face_check["has_face"]:
+                n = face_check["num_faces"]
+                st.markdown(
+                    f'<div style="color:{ACCENT_REAL}; font-weight:600;">'
+                    f'&#10003; {n} face{"s" if n != 1 else ""} detected &mdash; ready for analysis.</div>',
+                    unsafe_allow_html=True,
+                )
+                if n > 1:
+                    st.warning("Multiple faces detected. Verification evaluates overall image texture.")
+            else:
+                st.error("⚠️ No human face detected. Please upload a clear face portrait.")
+
+    show_gradcam = st.checkbox(
+        "Show Grad-CAM explainability heatmap",
+        value=True,
+        disabled=(uploaded_file is None),
+    )
+
+# ---------------------------------------------------------------------------
+# Right Column: Audit Results
+# ---------------------------------------------------------------------------
+with col_right:
+    with st.container(border=True):
+        st.markdown('<div class="card-header">Verification Result</div>', unsafe_allow_html=True)
+
+        can_run = model_ready and uploaded_file is not None and image is not None and bool(
+            face_check and face_check["has_face"]
+        )
+
+        run_clicked = st.button(
+            "Run Authenticity Audit",
+            use_container_width=True,
+            type="primary",
+            disabled=not can_run,
+        )
+
+        if not model_ready:
+            st.markdown('<div class="verdict-banner verdict-pending">MODEL UNAVAILABLE</div>', unsafe_allow_html=True)
+        elif uploaded_file is None:
+            st.markdown('<div class="verdict-banner verdict-pending">AWAITING IMAGE</div>', unsafe_allow_html=True)
+            st.caption("Upload an image on the left, then run the audit.")
+        elif image is not None and face_check is not None and not face_check["has_face"]:
+            st.markdown('<div class="verdict-banner verdict-pending">CANNOT VERIFY &mdash; NO FACE</div>', unsafe_allow_html=True)
+            st.caption("Verification is disabled because no face was detected.")
+        elif run_clicked:
+            try:
+                img_tensor, model_view, _, crop_info = preprocess(image)
+                cam_module = GradCAM(model)
+                cam, logit_value = cam_module.generate(img_tensor.to(DEVICE))
+                cam_module.remove()
+
+                raw_score = float(1.0 / (1.0 + np.exp(-logit_value)))
+                st.session_state["analysis"] = {
+                    "logit": logit_value,
+                    "raw_score": raw_score,
+                    "score": calibrated_score(logit_value),
+                    "verdict": decide(raw_score),
+                    "model_view": model_view,
+                    "crop_info": crop_info,
+                    "cam": cam,
+                }
+            except Exception as exc:
+                st.session_state["analysis"] = None
+                st.error(f"Inference failed: {exc}")
+
+        analysis = st.session_state["analysis"]
+        if analysis is not None and image is not None:
+            verdict_label = analysis["verdict"]
+            verdict_class, verdict_icon = {
+                "LIKELY AUTHENTIC": ("verdict-real", "&#10003;"),
+                "LIKELY MANIPULATED": ("verdict-fake", "&#9888;"),
+            }.get(verdict_label, ("verdict-pending", "?"))
+            score = analysis["score"]
+
+            st.markdown(
+                f'<div class="verdict-banner {verdict_class}">{verdict_icon} {verdict_label}</div>',
+                unsafe_allow_html=True,
+            )
+            st.markdown(f'<div class="confidence-display">{score * 100:.1f}%</div>', unsafe_allow_html=True)
+            st.markdown(
+                '<div class="confidence-sub">Manipulation score (calibrated on validation data) &mdash; '
+                'not a guaranteed probability for this photo</div>',
+                unsafe_allow_html=True,
+            )
+
+            # Meter runs authentic (left) -> manipulated (right) on the calibrated score.
+            marker_pct = max(0.0, min(100.0, score * 100))
+            st.markdown(
+                f"""
+                <div class="meter-track">
+                    <div class="meter-pointer" style="left:{marker_pct:.1f}%;"></div>
+                </div>
+                <div class="meter-legend">
+                    <span>0% &mdash; AUTHENTIC</span>
+                    <span>100% &mdash; MANIPULATED</span>
+                </div>
+                """,
+                unsafe_allow_html=True,
+            )
+
+            m1, m2, m3 = st.columns(3)
+            m1.metric("Calibrated score", f"{score * 100:.1f}%")
+            m2.metric("Uncalibrated score", f"{analysis['raw_score'] * 100:.1f}%")
+            m3.metric("Raw logit", f"{analysis['logit']:+.2f}")
+
+            if verdict_label == "INCONCLUSIVE":
+                st.warning(
+                    f"The uncalibrated score {analysis['raw_score']:.2f} lies between {REAL_BELOW:.2f} and "
+                    f"{FAKE_AT_OR_ABOVE:.2f}, where validation errors concentrate. Treat this result as undecided."
+                )
+            if not analysis["crop_info"]["face_detected"]:
+                st.warning("The face cropper found no face; the model analysed a centre crop instead.")
+            st.caption(
+                f"Verdict bands (uncalibrated score): authentic < {REAL_BELOW:.2f} &le; inconclusive < "
+                f"{FAKE_AT_OR_ABOVE:.2f} &le; manipulated. On validation data these bands flagged about 1% of genuine "
+                f"faces as manipulated and passed about 0.7% of fakes as authentic. Accuracy is lower on "
+                f"compressed video frames and on generators the model was not trained on (temperature {TEMPERATURE:.2f})."
+            )
+
+    if analysis is not None and image is not None and show_gradcam:
+        with st.container(border=True):
+            st.markdown('<div class="card-header">Visual Explainability &middot; Grad-CAM</div>', unsafe_allow_html=True)
+            # The heatmap is drawn on the exact 224 px face crop the model analysed.
+            heatmap_overlay = overlay_heatmap(analysis["model_view"], analysis["cam"])
+            gc_col1, gc_col2 = st.columns(2)
+            with gc_col1:
+                st.image(analysis["model_view"], caption="Model input (face crop)", use_container_width=True)
+            with gc_col2:
+                st.image(heatmap_overlay, caption="Grad-CAM: evidence toward 'manipulated'", use_container_width=True)
+            st.caption(
+                "Warmer regions pushed the score toward 'manipulated'. Grad-CAM is a coarse 7x7 attribution "
+                "and shows where the model looked, not proof of a manipulation."
+            )

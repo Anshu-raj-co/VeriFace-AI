@@ -1,0 +1,242 @@
+{
+  "generated": "2026-10-15 15:08:40",
+  "size": 256,
+  "jpeg_q_range": [
+    60,
+    100
+  ],
+  "n_processed": 164760,
+  "n_failed": 0,
+  "per_generator": [
+    {
+      "generator": "celebdf_real",
+      "label": "REAL",
+      "n": 5471,
+      "face_detected": 0.9616157923597148,
+      "upscaled": 0.005849022116614878,
+      "median_crop_side": 256.0,
+      "median_kb": 5.7421875
+    },
+    {
+      "generator": "celebdf_synthesis",
+      "label": "FAKE",
+      "n": 3838,
+      "face_detected": 0.9119332985930172,
+      "upscaled": 0.005732152162584679,
+      "median_crop_side": 256.0,
+      "median_kb": 5.546875
+    },
+    {
+      "generator": "celebdf_youtube_real",
+      "label": "REAL",
+      "n": 2745,
+      "face_detected": 0.9624772313296903,
+      "upscaled": 0.006193078324225865,
+      "median_crop_side": 256.0,
+      "median_kb": 6.1005859375
+    },
+    {
+      "generator": "dfdc_fake",
+      "label": "FAKE",
+      "n": 4065,
+      "face_detected": 0.915129151291513,
+      "upscaled": 0.01869618696186962,
+      "median_crop_side": 256.0,
+      "median_kb": 5.79296875
+    },
+    {
+      "generator": "dfdc_real",
+      "label": "REAL",
+      "n": 1578,
+      "face_detected": 0.8960709759188846,
+      "upscaled": 0.02091254752851711,
+      "median_crop_side": 256.0,
+      "median_kb": 5.61083984375
+    },
+    {
+      "generator": "ffhq",
+      "label": "REAL",
+      "n": 69883,
+      "face_detected": 0.9507891761944965,
+      "upscaled": 0.020019174906629654,
+      "median_crop_side": 256.0,
+      "median_kb": 13.2373046875
+    },
+    {
+      "generator": "ffpp_DeepFakeDetection",
+      "label": "FAKE",
+      "n": 253,
+      "face_detected": 0.32806324110671936,
+      "upscaled": 0.32806324110671936,
+      "median_crop_side": 256.0,
+      "median_kb": 10.736328125
+    },
+    {
+      "generator": "ffpp_Deepfakes",
+      "label": "FAKE",
+      "n": 1251,
+      "face_detected": 0.7745803357314148,
+      "upscaled": 0.7697841726618705,
+      "median_crop_side": 124.0,
+      "median_kb": 9.310546875
+    },
+    {
+      "generator": "ffpp_Face2Face",
+      "label": "FAKE",
+      "n": 1242,
+      "face_detected": 0.8293075684380032,
+      "upscaled": 0.8252818035426731,
+      "median_crop_side": 119.0,
+      "median_kb": 8.888671875
+    },
+    {
+      "generator": "ffpp_FaceShifter",
+      "label": "FAKE",
+      "n": 1240,
+      "face_detected": 0.8145161290322581,
+      "upscaled": 0.8104838709677419,
+      "median_crop_side": 121.0,
+      "median_kb": 9.2001953125
+    },
+    {
+      "generator": "ffpp_FaceSwap",
+      "label": "FAKE",
+      "n": 1247,
+      "face_detected": 0.7987169206094628,
+      "upscaled": 0.7947072975140337,
+      "median_crop_side": 122.0,
+      "median_kb": 9.12890625
+    },
+    {
+      "generator": "ffpp_NeuralTextures",
+      "label": "FAKE",
+      "n": 1237,
+      "face_detected": 0.8124494745351657,
+      "upscaled": 0.8075990299110751,
+      "median_crop_side": 121.0,
+      "median_kb": 9.0654296875
+    },
+    {
+      "generator": "ffpp_original",
+      "label": "REAL",
+      "n": 2577,
+      "face_detected": 0.8389600310438494,
+      "upscaled": 0.8362436942180831,
+      "median_crop_side": 119.0,
+      "median_kb": 8.9267578125
+    },
+    {
+      "generator": "stable_diffusion",
+      "label": "FAKE",
+      "n": 7499,
+      "face_detected": 0.8937191625550074,
+      "upscaled": 0.7699693292438992,
+      "median_crop_side": 191.0,
+      "median_kb": 9.8515625
+    },
+    {
+      "generator": "stylegan",
+      "label": "FAKE",
+      "n": 57903,
+      "face_detected": 0.9927637600815157,
+      "upscaled": 0.003384971417715835,
+      "median_crop_side": 256.0,
+      "median_kb": 13.0625
+    },
+    {
+      "generator": "text_to_image_unknown",
+      "label": "FAKE",
+      "n": 506,
+      "face_detected": 0.8280632411067194,
+      "upscaled": 0.041501976284584984,
+      "median_crop_side": 256.0,
+      "median_kb": 11.40185546875
+    },
+    {
+      "generator": "unattributed_ai",
+      "label": "FAKE",
+      "n": 1499,
+      "face_detected": 0.8352234823215477,
+      "upscaled": 0.7518345563709139,
+      "median_crop_side": 187.0,
+      "median_kb": 8.2138671875
+    },
+    {
+      "generator": "web_photo_real",
+      "label": "REAL",
+      "n": 726,
+      "face_detected": 0.9366391184573003,
+      "upscaled": 0.01928374655647383,
+      "median_crop_side": 256.0,
+      "median_kb": 8.9091796875
+    }
+  ],
+  "probe": [
+    {
+      "feature_set": "processed file (w, h, size, aspect)",
+      "model": "logistic_regression",
+      "n_train": 131684,
+      "n_test": 16635,
+      "accuracy": 0.506,
+      "balanced_accuracy": 0.5102,
+      "roc_auc": 0.517,
+      "majority_baseline": 0.5123,
+      "verdict": "ok (near chance)"
+    },
+    {
+      "feature_set": "processed file (w, h, size, aspect)",
+      "model": "decision_tree",
+      "n_train": 131684,
+      "n_test": 16635,
+      "accuracy": 0.524,
+      "balanced_accuracy": 0.5193,
+      "roc_auc": 0.5238,
+      "majority_baseline": 0.5123,
+      "verdict": "ok (near chance)"
+    },
+    {
+      "feature_set": "JPEG quality factor",
+      "model": "logistic_regression",
+      "n_train": 131684,
+      "n_test": 16635,
+      "accuracy": 0.492,
+      "balanced_accuracy": 0.4923,
+      "roc_auc": 0.4941,
+      "majority_baseline": 0.5123,
+      "verdict": "ok (near chance)"
+    },
+    {
+      "feature_set": "JPEG quality factor",
+      "model": "decision_tree",
+      "n_train": 131684,
+      "n_test": 16635,
+      "accuracy": 0.5001,
+      "balanced_accuracy": 0.4968,
+      "roc_auc": 0.5012,
+      "majority_baseline": 0.5123,
+      "verdict": "ok (near chance)"
+    },
+    {
+      "feature_set": "crop trace (face found, crop side, upscaled)",
+      "model": "logistic_regression",
+      "n_train": 131684,
+      "n_test": 16635,
+      "accuracy": 0.5638,
+      "balanced_accuracy": 0.554,
+      "roc_auc": 0.5572,
+      "majority_baseline": 0.5123,
+      "verdict": "ok (near chance)"
+    },
+    {
+      "feature_set": "crop trace (face found, crop side, upscaled)",
+      "model": "decision_tree",
+      "n_train": 131684,
+      "n_test": 16635,
+      "accuracy": 0.5662,
+      "balanced_accuracy": 0.5563,
+      "roc_auc": 0.5616,
+      "majority_baseline": 0.5123,
+      "verdict": "ok (near chance)"
+    }
+  ]
+}

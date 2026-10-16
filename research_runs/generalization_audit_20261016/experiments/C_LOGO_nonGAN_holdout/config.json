@@ -1,0 +1,36 @@
+{
+  "init": "imagenet",
+  "out": "experiments\\C_LOGO_nonGAN_holdout",
+  "weighting": "none",
+  "sampler": "uniform",
+  "epochs": 2.0,
+  "lr": 0.0003,
+  "batch_size": 16,
+  "ckpt_every": 2000,
+  "max_steps": 0,
+  "val_limit": 0,
+  "resume": false,
+  "exclude_generators": "stable_diffusion,text_to_image_unknown,unattributed_ai",
+  "warmup_frac": 0.1,
+  "excluded_from_train": [
+    "stable_diffusion",
+    "text_to_image_unknown",
+    "unattributed_ai"
+  ],
+  "steps": 15509,
+  "n_train": 124077,
+  "n_val": 16441,
+  "seed": 42,
+  "init_epoch": 0,
+  "loss_weight_by_cell": {
+    "celebdf|0": 1.0,
+    "celebdf|1": 1.0,
+    "dfdc|0": 1.0,
+    "dfdc|1": 1.0,
+    "ffhq|0": 1.0,
+    "ffpp|0": 1.0,
+    "ffpp|1": 1.0,
+    "stylegan|1": 1.0,
+    "web_photo_real|0": 1.0
+  }
+}

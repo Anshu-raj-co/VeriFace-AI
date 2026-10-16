@@ -1,0 +1,367 @@
+{
+  "provenance_vs_label": [
+    {
+      "label": "FAKE",
+      "FAKE": 81780,
+      "REAL": 0
+    },
+    {
+      "label": "REAL",
+      "FAKE": 0,
+      "REAL": 82980
+    }
+  ],
+  "provenance_conflicts": 0,
+  "provenance_ambiguous_by_generator": {},
+  "md5_shared_across_labels": 0,
+  "md5_duplicates_total": 0,
+  "cross_label_pairs_by_class": [
+    {
+      "real_generator": "celebdf_real",
+      "fake_generator": "celebdf_synthesis",
+      "global_difference": 1398,
+      "localized_center_edit": 371,
+      "near_identical(35-45dB)": 4,
+      "pixel_identical(>=45dB)": 0
+    },
+    {
+      "real_generator": "celebdf_youtube_real",
+      "fake_generator": "celebdf_synthesis",
+      "global_difference": 5,
+      "localized_center_edit": 0,
+      "near_identical(35-45dB)": 0,
+      "pixel_identical(>=45dB)": 0
+    },
+    {
+      "real_generator": "dfdc_real",
+      "fake_generator": "dfdc_fake",
+      "global_difference": 145,
+      "localized_center_edit": 6,
+      "near_identical(35-45dB)": 1,
+      "pixel_identical(>=45dB)": 0
+    },
+    {
+      "real_generator": "ffhq",
+      "fake_generator": "stylegan",
+      "global_difference": 267,
+      "localized_center_edit": 0,
+      "near_identical(35-45dB)": 0,
+      "pixel_identical(>=45dB)": 0
+    },
+    {
+      "real_generator": "ffpp_original",
+      "fake_generator": "ffpp_Deepfakes",
+      "global_difference": 178,
+      "localized_center_edit": 582,
+      "near_identical(35-45dB)": 350,
+      "pixel_identical(>=45dB)": 0
+    },
+    {
+      "real_generator": "ffpp_original",
+      "fake_generator": "ffpp_Face2Face",
+      "global_difference": 376,
+      "localized_center_edit": 193,
+      "near_identical(35-45dB)": 576,
+      "pixel_identical(>=45dB)": 1
+    },
+    {
+      "real_generator": "ffpp_original",
+      "fake_generator": "ffpp_FaceShifter",
+      "global_difference": 133,
+      "localized_center_edit": 338,
+      "near_identical(35-45dB)": 691,
+      "pixel_identical(>=45dB)": 0
+    },
+    {
+      "real_generator": "ffpp_original",
+      "fake_generator": "ffpp_FaceSwap",
+      "global_difference": 189,
+      "localized_center_edit": 421,
+      "near_identical(35-45dB)": 536,
+      "pixel_identical(>=45dB)": 0
+    },
+    {
+      "real_generator": "ffpp_original",
+      "fake_generator": "ffpp_NeuralTextures",
+      "global_difference": 373,
+      "localized_center_edit": 137,
+      "near_identical(35-45dB)": 631,
+      "pixel_identical(>=45dB)": 1
+    }
+  ],
+  "cross_label_psnr_quantiles": [
+    {
+      "real_generator": "celebdf_real",
+      "fake_generator": "celebdf_synthesis",
+      "count": 1773.0,
+      "mean": 27.7870887474,
+      "std": 3.0994136615,
+      "min": 11.9045375498,
+      "1%": 19.05483937,
+      "50%": 28.1460162142,
+      "99%": 34.0474697787,
+      "max": 36.3703991031
+    },
+    {
+      "real_generator": "celebdf_youtube_real",
+      "fake_generator": "celebdf_synthesis",
+      "count": 5.0,
+      "mean": 18.3705585131,
+      "std": 4.4810823069,
+      "min": 13.7845088424,
+      "1%": 13.8242574757,
+      "50%": 18.5747939151,
+      "99%": 24.8389434727,
+      "max": 25.0547096384
+    },
+    {
+      "real_generator": "dfdc_real",
+      "fake_generator": "dfdc_fake",
+      "count": 152.0,
+      "mean": 23.3231515136,
+      "std": 4.6766490628,
+      "min": 9.8050992456,
+      "1%": 10.7754649093,
+      "50%": 23.012612104,
+      "99%": 34.3318498779,
+      "max": 36.4999794698
+    },
+    {
+      "real_generator": "ffhq",
+      "fake_generator": "stylegan",
+      "count": 267.0,
+      "mean": 13.1400434039,
+      "std": 1.8443387292,
+      "min": 8.3875648,
+      "1%": 9.0934551502,
+      "50%": 13.1180598345,
+      "99%": 17.0972969654,
+      "max": 17.9019438325
+    },
+    {
+      "real_generator": "ffpp_original",
+      "fake_generator": "ffpp_Deepfakes",
+      "count": 1110.0,
+      "mean": 32.8125938398,
+      "std": 4.1572940753,
+      "min": 14.1720901822,
+      "1%": 18.9008295504,
+      "50%": 33.9372219888,
+      "99%": 39.5878455337,
+      "max": 41.0001745575
+    },
+    {
+      "real_generator": "ffpp_original",
+      "fake_generator": "ffpp_Face2Face",
+      "count": 1146.0,
+      "mean": 31.5283988473,
+      "std": 7.5873389301,
+      "min": 12.9700497966,
+      "1%": 16.6949444101,
+      "50%": 35.0617917301,
+      "99%": 40.8680709817,
+      "max": 45.3601021402
+    },
+    {
+      "real_generator": "ffpp_original",
+      "fake_generator": "ffpp_FaceShifter",
+      "count": 1162.0,
+      "mean": 34.6601112692,
+      "std": 3.6803814563,
+      "min": 14.2010949294,
+      "1%": 20.5942044159,
+      "50%": 35.4885225904,
+      "99%": 39.769651521,
+      "max": 41.3743623104
+    },
+    {
+      "real_generator": "ffpp_original",
+      "fake_generator": "ffpp_FaceSwap",
+      "count": 1146.0,
+      "mean": 33.8740945796,
+      "std": 3.8844600471,
+      "min": 14.1687896985,
+      "1%": 20.1571520222,
+      "50%": 34.7980312556,
+      "99%": 39.6709890294,
+      "max": 41.6117898699
+    },
+    {
+      "real_generator": "ffpp_original",
+      "fake_generator": "ffpp_NeuralTextures",
+      "count": 1142.0,
+      "mean": 31.9345228434,
+      "std": 7.684461797,
+      "min": 12.9672948744,
+      "1%": 16.6956646028,
+      "50%": 35.8230213839,
+      "99%": 40.880287859,
+      "max": 45.5779607493
+    }
+  ],
+  "fake_images_near_identical_to_a_real": 2791,
+  "near_identical_by_fake_generator": {
+    "celebdf_synthesis": 4,
+    "dfdc_fake": 1,
+    "ffpp_Deepfakes": 350,
+    "ffpp_Face2Face": 577,
+    "ffpp_FaceShifter": 691,
+    "ffpp_FaceSwap": 536,
+    "ffpp_NeuralTextures": 632
+  },
+  "model_disagreement_by_set_generator": [
+    {
+      "pred_set": "test(existing, descriptive)",
+      "generator": "celebdf_real",
+      "label": "REAL",
+      "size": 598,
+      "sum": 2,
+      "mean": 0.0033444816
+    },
+    {
+      "pred_set": "test(existing, descriptive)",
+      "generator": "celebdf_synthesis",
+      "label": "FAKE",
+      "size": 253,
+      "sum": 5,
+      "mean": 0.0197628458
+    },
+    {
+      "pred_set": "test(existing, descriptive)",
+      "generator": "celebdf_youtube_real",
+      "label": "REAL",
+      "size": 252,
+      "sum": 2,
+      "mean": 0.0079365079
+    },
+    {
+      "pred_set": "test(existing, descriptive)",
+      "generator": "dfdc_fake",
+      "label": "FAKE",
+      "size": 442,
+      "sum": 20,
+      "mean": 0.0452488688
+    },
+    {
+      "pred_set": "test(existing, descriptive)",
+      "generator": "dfdc_real",
+      "label": "REAL",
+      "size": 230,
+      "sum": 3,
+      "mean": 0.0130434783
+    },
+    {
+      "pred_set": "test(existing, descriptive)",
+      "generator": "ffhq",
+      "label": "REAL",
+      "size": 7091,
+      "sum": 3,
+      "mean": 0.0004230715
+    },
+    {
+      "pred_set": "test(existing, descriptive)",
+      "generator": "ffpp_original",
+      "label": "REAL",
+      "size": 278,
+      "sum": 8,
+      "mean": 0.0287769784
+    },
+    {
+      "pred_set": "test(existing, descriptive)",
+      "generator": "stylegan",
+      "label": "FAKE",
+      "size": 5785,
+      "sum": 6,
+      "mean": 0.0010371651
+    },
+    {
+      "pred_set": "train(video sources, fitted)",
+      "generator": "celebdf_synthesis",
+      "label": "FAKE",
+      "size": 3200,
+      "sum": 1,
+      "mean": 0.0003125
+    },
+    {
+      "pred_set": "train(video sources, fitted)",
+      "generator": "dfdc_fake",
+      "label": "FAKE",
+      "size": 3383,
+      "sum": 12,
+      "mean": 0.0035471475
+    },
+    {
+      "pred_set": "train(video sources, fitted)",
+      "generator": "ffpp_NeuralTextures",
+      "label": "FAKE",
+      "size": 985,
+      "sum": 1,
+      "mean": 0.0010152284
+    },
+    {
+      "pred_set": "train(video sources, fitted)",
+      "generator": "ffpp_original",
+      "label": "REAL",
+      "size": 2013,
+      "sum": 1,
+      "mean": 0.000496771
+    },
+    {
+      "pred_set": "val",
+      "generator": "celebdf_synthesis",
+      "label": "FAKE",
+      "size": 385,
+      "sum": 7,
+      "mean": 0.0181818182
+    },
+    {
+      "pred_set": "val",
+      "generator": "celebdf_youtube_real",
+      "label": "REAL",
+      "size": 258,
+      "sum": 2,
+      "mean": 0.007751938
+    },
+    {
+      "pred_set": "val",
+      "generator": "dfdc_fake",
+      "label": "FAKE",
+      "size": 240,
+      "sum": 2,
+      "mean": 0.0083333333
+    },
+    {
+      "pred_set": "val",
+      "generator": "dfdc_real",
+      "label": "REAL",
+      "size": 156,
+      "sum": 23,
+      "mean": 0.1474358974
+    },
+    {
+      "pred_set": "val",
+      "generator": "ffhq",
+      "label": "REAL",
+      "size": 7075,
+      "sum": 3,
+      "mean": 0.0004240283
+    },
+    {
+      "pred_set": "val",
+      "generator": "ffpp_original",
+      "label": "REAL",
+      "size": 286,
+      "sum": 4,
+      "mean": 0.013986014
+    },
+    {
+      "pred_set": "val",
+      "generator": "stylegan",
+      "label": "FAKE",
+      "size": 5790,
+      "sum": 1,
+      "mean": 0.0001727116
+    }
+  ],
+  "disagreement_also_near_identical_pair": 7
+}

@@ -1,0 +1,65 @@
+%% VeriFace AI — system architecture (matches app.py, inference.py, face_utils.py, model.py, train.py as of 2026-10-16)
+%% Top: deployed inference path (what runs when a user uploads an image).
+%% Bottom: offline training / evaluation / research path (never executed by the app).
+%% CLIP, FFT and the J1 checkpoint are research artifacts only; they are NOT in the deployed path.
+flowchart TB
+    classDef ui fill:#E8F1FF,stroke:#2F6FD0,color:#0B2A55
+    classDef inf fill:#EAF7EE,stroke:#2E8B57,color:#0E3B22
+    classDef model fill:#FFF4E0,stroke:#C98A1B,color:#4A3000
+    classDef art fill:#F3F0FA,stroke:#6E56B5,color:#2A1E52
+    classDef off fill:#F4F4F4,stroke:#7A7A7A,color:#222,stroke-dasharray: 4 3
+    classDef stop fill:#FDECEC,stroke:#C0392B,color:#5A1010
+
+    subgraph RUNTIME["INFERENCE TIME (deployed app)"]
+        direction TB
+        U(["User uploads JPG / JPEG / PNG<br/>st.file_uploader"]):::ui
+        V["Validation (app.py)<br/>PIL Image.open → convert('RGB')"]:::ui
+        VX["'Could not read image' error<br/>no analysis"]:::stop
+        D["Face detection (face_utils.crop_face_square)<br/>OpenCV Haar cascade on ≤512 px copy, min face 40 px<br/>largest face → square box 1.8 × detector box"]:::inf
+        DX["CANNOT VERIFY — NO FACE<br/>Run button disabled"]:::stop
+        C["Square face crop → 256 × 256<br/>INTER_AREA (shrink) / INTER_CUBIC (enlarge), no padding"]:::inf
+        P["Eval transform (train.get_eval_transforms)<br/>CenterCrop 224 → ToTensor → ImageNet mean/std<br/>tensor 1 × 3 × 224 × 224"]:::inf
+        M["VisionFaceClassifier (model.py)<br/>timm EfficientNet-B0 → 1280-d pooled features<br/>Dropout 0.3 → Linear 1280→1 → logit"]:::model
+        S["Score processing (inference.py)<br/>raw = sigmoid(logit)  ·  FAKE = 1, REAL = 0<br/>display = sigmoid(logit / T), T = 1.5523"]:::inf
+        R{"Three-way policy on RAW score<br/>(validation-derived)"}:::inf
+        RA["LIKELY AUTHENTIC<br/>raw < 0.30"]:::ui
+        RI["INCONCLUSIVE<br/>0.30 ≤ raw < 0.90"]:::ui
+        RM["LIKELY MANIPULATED<br/>raw ≥ 0.90"]:::ui
+        G["Grad-CAM (app.py GradCAM)<br/>hooks last Conv2d (conv_head, 1280 ch)<br/>7 × 7 map on the 224 px model input"]:::inf
+        UI(["Result panel<br/>verdict banner · calibrated %, raw %, logit · meter · caveat captions<br/>optional heatmap overlay"]):::ui
+
+        U --> V
+        V -- unreadable --> VX
+        V --> D
+        D -- no face --> DX
+        D -- face found --> C --> P --> M --> S --> R
+        R --> RA & RI & RM
+        M -.->|same forward pass, backward on logit| G
+        RA & RI & RM --> UI
+        G --> UI
+    end
+
+    subgraph LOAD["MODEL LOADING (cached)"]
+        direction LR
+        CK[("loaded once per server process<br/>(st.cache_resource)<br/><br/>best_face_model.pth<br/>SHA-256 c9a5eb5e…a1d0eb11<br/>epoch 7, positive_class = FAKE")]:::art
+        LC["inference.load_checkpoint<br/>refuses: missing file · no state_dict ·<br/>positive_class ≠ FAKE · unknown backbone"]:::inf
+        BM["model.build_model('vision', 'efficientnet_b0', pretrained=False)"]:::model
+        CK --> LC --> BM
+    end
+    BM ==> M
+    POL[("research_runs/stage1_20261016/reports/app_policy.json<br/>bands 0.30 / 0.90, T = 1.5523 (fitted on validation)")]:::art
+    POL -.->|constants copied into inference.py| R
+
+    subgraph OFFLINE["OFFLINE PIPELINE"]
+        direction TB
+        RAW[("dataset_images/<br/>Kaggle 140k + GRAVEX-200K (340,000 raw)")]:::off
+        AUD["audit_dataset.py<br/>provenance · MD5 / pHash + NCC dedup · group_id ·<br/>StratifiedGroupKFold 8/1/1 → cleaned_metadata.csv (164,760)"]:::off
+        PRE["preprocess_data.py<br/>crop_face_square 256 px · JPEG re-encode q 60–100<br/>→ dataset_processed/"]:::off
+        TR["train.py<br/>RandomCrop 224 + mild aug · BCEWithLogits · AdamW ·<br/>warm-up + cosine · AMP · early stop on val EER"]:::off
+        EV["evaluate.py<br/>test split → evaluation_reports/"]:::off
+        RS["research_runs/<br/>generalization audit · Stage 1 (LOFO, J1 JPEG-aug,<br/>CLIP / FFT probes, calibration, policy) · Part 2 (final test)"]:::off
+        RAW --> AUD --> PRE --> TR --> EV --> RS
+    end
+    TR ==>|best val EER, epoch 7| CK
+    RS -.-> POL
+    D -.-|same crop function builds the training data| PRE

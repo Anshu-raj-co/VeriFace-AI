@@ -1,0 +1,138 @@
+{
+  "issues": [
+    "Handoff said J1 missed the margin only on the FFHQ criterion; the StyleGAN-drop criterion is ALSO formally false (J1/E0 ratio 0.92); the report called it 'uninformative'.",
+    "FFHQ-rise ratio J1/E0 = 0.5885 (reported as '58 %'; rounds to 59 %)."
+  ],
+  "lofo": [
+    {
+      "run": "LOFO_ALL_control",
+      "epochs": 2.0,
+      "steps_done": 16460,
+      "steps_planned": 16460,
+      "steps_per_epoch": 8230,
+      "complete_2_epochs": true,
+      "smoke_test": false,
+      "n_val": 16441,
+      "val_auc_recomputed": 0.9962529422289312,
+      "val_auc_summary": 0.9962529422289313,
+      "excluded_from_train": ""
+    },
+    {
+      "run": "LOFO_diffusion_t2i",
+      "epochs": 2.0,
+      "steps_done": 15508,
+      "steps_planned": 15508,
+      "steps_per_epoch": 7754,
+      "complete_2_epochs": true,
+      "smoke_test": false,
+      "n_val": 16441,
+      "val_auc_recomputed": 0.9671612741354603,
+      "val_auc_summary": 0.96716127413546,
+      "excluded_from_train": "stable_diffusion;text_to_image_unknown;unattributed_ai",
+      "heldout_auc_vs_matched_real": 0.8123498978694219,
+      "heldout_tpr@0.5": 0.1529535864978903,
+      "no_heldout_generator_in_train": true
+    },
+    {
+      "run": "LOFO_faceswap_video",
+      "epochs": 2.0,
+      "steps_done": 15236,
+      "steps_planned": 15236,
+      "steps_per_epoch": 7618,
+      "complete_2_epochs": true,
+      "smoke_test": false,
+      "n_val": 16441,
+      "val_auc_recomputed": 0.9426289574571322,
+      "val_auc_summary": 0.9426289574571322,
+      "excluded_from_train": "celebdf_synthesis;dfdc_fake;ffpp_DeepFakeDetection;ffpp_Deepfakes;ffpp_FaceShifter;ffpp_FaceSwap",
+      "heldout_auc_vs_matched_real": 0.5911509747564256,
+      "heldout_tpr@0.5": 0.19939577039274925,
+      "no_heldout_generator_in_train": true
+    },
+    {
+      "run": "LOFO_reenactment",
+      "epochs": 2.0,
+      "steps_done": 16212,
+      "steps_planned": 16212,
+      "steps_per_epoch": 8106,
+      "complete_2_epochs": true,
+      "smoke_test": false,
+      "n_val": 16441,
+      "val_auc_recomputed": 0.9954646129765552,
+      "val_auc_summary": 0.9954646129765552,
+      "excluded_from_train": "ffpp_Face2Face;ffpp_NeuralTextures",
+      "heldout_auc_vs_matched_real": 0.5870272584558298,
+      "heldout_tpr@0.5": 0.6775510204081633,
+      "no_heldout_generator_in_train": true
+    },
+    {
+      "run": "LOFO_gan",
+      "epochs": 2.0,
+      "steps_done": 10668,
+      "steps_planned": 10668,
+      "steps_per_epoch": 5334,
+      "complete_2_epochs": true,
+      "smoke_test": false,
+      "n_val": 16441,
+      "val_auc_recomputed": 0.5843036566877242,
+      "val_auc_summary": 0.5843036566877242,
+      "excluded_from_train": "stylegan",
+      "heldout_auc_vs_matched_real": 0.5043378433634206,
+      "heldout_tpr@0.5": 0.0,
+      "no_heldout_generator_in_train": true
+    }
+  ],
+  "j1_criteria": {
+    "E0_stylegan_drop_q35": 0.004490500863557845,
+    "E0_ffhq_rise_q35": 0.06869257950530035,
+    "J1_stylegan_drop_q35": 0.004145077720207224,
+    "J1_ffhq_rise_q35": 0.04042402826855124,
+    "ratio_ffhq_rise_J1_over_E0": 0.5884773662551441,
+    "ratio_stylegan_drop_J1_over_E0": 0.9230769230769192,
+    "C1_stylegan_drop_le_half_E0": false,
+    "C2_ffhq_rise_le_half_E0": false,
+    "C3_clean_eer_le_E0+0.3pp": true,
+    "C4_within_ffpp_from_report": true,
+    "ALL_MET": false,
+    "matches_jpeg_decision_json": true,
+    "eer_table": {
+      "baseline_clean": 0.02621462290000537,
+      "baseline_q50": 0.04586172871834639,
+      "baseline_q35": 0.04932993013298609,
+      "E0_clean": 0.028162699853843884,
+      "E0_q50": 0.04920455400460094,
+      "E0_q35": 0.055045163547346135,
+      "J1_clean": 0.02584935847116067,
+      "J1_q50": 0.03722437987322868,
+      "J1_q35": 0.0430023013517813
+    }
+  },
+  "baseline_test_recomputed": {
+    "n": 16635,
+    "roc_auc": 0.9973674621146454,
+    "pr_auc": 0.9973487600547417,
+    "confusion@0.5": [
+      8240,
+      282,
+      158,
+      7955
+    ],
+    "json_roc_auc": 0.9973674621146454,
+    "json_confusion@0.5": [
+      8240,
+      282,
+      158,
+      7955
+    ]
+  },
+  "split_counts": {
+    "train": 131684,
+    "test": 16635,
+    "val": 16441
+  },
+  "test_ids_match_predictions_file": true,
+  "J1_n_train_equals_train_split": true,
+  "J1_n_val_equals_val_split": true,
+  "inference_constants_match_policy": true,
+  "app_policy_decides_on": "raw sigmoid score (inference.decide(raw)); temperature-scaled score is display-only"
+}

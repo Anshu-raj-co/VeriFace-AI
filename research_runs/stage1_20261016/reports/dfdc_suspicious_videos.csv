@@ -1,0 +1,9 @@
+generator,s,vid,n,mean,max,flag
+dfdc_fake,test,bmjmjmbglm,2,0.0031534262,0.0041577322,fake_video_all_frames_scored_real
+dfdc_fake,test,bndybcqhfr,2,0.01368927475,0.026508056,fake_video_all_frames_scored_real
+dfdc_fake,test,dkdwxmtpuo,1,1.6939272e-05,1.6939272e-05,fake_video_all_frames_scored_real
+dfdc_fake,train,ajwpjhrbcv,1,0.012721162289381,0.012721162289381,fake_video_all_frames_scored_real
+dfdc_fake,val,bpwzipqtxf,1,0.0013812521938234,0.0013812521938234,fake_video_all_frames_scored_real
+dfdc_real,val,ciyoudyhly,1,0.9994839429855348,0.9994839429855348,real_video_scored_fake
+dfdc_real,val,dhxctgyoqj,1,0.9242909550666808,0.9242909550666808,real_video_scored_fake
+dfdc_real,val,ehccixxzoe,9,0.999992847442627,1.0,real_video_scored_fake

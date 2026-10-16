@@ -1,0 +1,24 @@
+cff-version: 1.2.0
+message: "If you refer to this research project, please cite it as below."
+type: software
+title: "VeriFace AI: a research study of face-image authenticity classification, robustness and its limits"
+authors:
+  - given-names: Anshu
+    family-names: Raj
+repository-code: "https://github.com/Anshu-raj-co/VeriFace-AI"
+license: MIT
+date-released: "2026-10-16"
+keywords:
+  - deepfake detection
+  - face forensics
+  - EfficientNet
+  - Grad-CAM
+  - generalisation
+  - calibration
+abstract: >-
+  An EfficientNet-B0 classifier for genuine vs AI-generated / manipulated face
+  images, trained on 164,760 audited, group-split face crops. The project
+  documents leave-family-out generalisation (not supported for unseen
+  generator families), JPEG robustness, calibration, a validation-derived
+  three-way verdict policy and Grad-CAM explainability. It is a research
+  prototype, not a forensic tool.

@@ -1,0 +1,22 @@
+{
+  "steps_done": 16212,
+  "steps_planned": 16212,
+  "epochs": 2.0,
+  "train_minutes_this_session": 33.4,
+  "val_auc_final": 0.9954646129765552,
+  "epoch_val": [
+    {
+      "epoch": 1,
+      "step": 8106,
+      "val_auc": 0.9941102323509216
+    },
+    {
+      "epoch": 2,
+      "step": 16212,
+      "val_auc": 0.9954646129765552
+    }
+  ],
+  "min_commit_avail_gb": 15.88043212890625,
+  "vram_peak_reserved_gb": 1.205078125,
+  "smoke_test": false
+}

@@ -1,0 +1,212 @@
+{
+  "meta": {
+    "backbone": "efficientnet_b0",
+    "model_type": "vision",
+    "epoch": 7,
+    "positive_class": "FAKE",
+    "input_size": 224
+  },
+  "new_app_score": {
+    "spearman_vs_eval_pipeline": 0.9934653135439441,
+    "median_abs_logit_diff_vs_eval": 0.19459218136360246,
+    "decision_agreement@0.5_vs_eval": 0.984313725490196,
+    "accuracy@0.5": 0.9058823529411765,
+    "auc": 0.93993265993266
+  },
+  "old_app_score": {
+    "spearman_vs_eval_pipeline": 0.9375628439604736,
+    "median_abs_logit_diff_vs_eval": 0.9259522846966721,
+    "decision_agreement@0.5_vs_eval": 0.9529411764705882,
+    "accuracy@0.5": 0.8901960784313725,
+    "auc": 0.9147138047138048
+  },
+  "eval_pipeline_on_sample": {
+    "accuracy@0.5": 0.9137254901960784,
+    "auc": 0.9418181818181817
+  },
+  "crop_side_match_rate": 1.0,
+  "new_verdict_counts": {
+    "INCONCLUSIVE": {
+      "0": 14,
+      "1": 51
+    },
+    "LIKELY AUTHENTIC": {
+      "0": 70,
+      "1": 1
+    },
+    "LIKELY MANIPULATED": {
+      "0": 6,
+      "1": 113
+    }
+  },
+  "n_images": 255,
+  "seconds": 8.7,
+  "by_generator": {
+    "celebdf_real": {
+      "eval": 0.001,
+      "new": 0.001,
+      "old": 0.008
+    },
+    "celebdf_synthesis": {
+      "eval": 0.928,
+      "new": 0.927,
+      "old": 0.907
+    },
+    "celebdf_youtube_real": {
+      "eval": 0.013,
+      "new": 0.008,
+      "old": 0.008
+    },
+    "dfdc_fake": {
+      "eval": 0.956,
+      "new": 0.93,
+      "old": 0.983
+    },
+    "dfdc_real": {
+      "eval": 0.383,
+      "new": 0.388,
+      "old": 0.481
+    },
+    "ffhq": {
+      "eval": 0.006,
+      "new": 0.0,
+      "old": 0.0
+    },
+    "ffpp_Deepfakes": {
+      "eval": 0.875,
+      "new": 0.873,
+      "old": 0.785
+    },
+    "ffpp_Face2Face": {
+      "eval": 0.858,
+      "new": 0.827,
+      "old": 0.721
+    },
+    "ffpp_FaceShifter": {
+      "eval": 0.782,
+      "new": 0.727,
+      "old": 0.656
+    },
+    "ffpp_FaceSwap": {
+      "eval": 0.895,
+      "new": 0.881,
+      "old": 0.763
+    },
+    "ffpp_NeuralTextures": {
+      "eval": 0.807,
+      "new": 0.787,
+      "old": 0.791
+    },
+    "ffpp_original": {
+      "eval": 0.729,
+      "new": 0.699,
+      "old": 0.726
+    },
+    "stable_diffusion": {
+      "eval": 1.0,
+      "new": 1.0,
+      "old": 0.998
+    },
+    "stylegan": {
+      "eval": 1.0,
+      "new": 1.0,
+      "old": 0.999
+    },
+    "text_to_image_unknown": {
+      "eval": 0.999,
+      "new": 1.0,
+      "old": 0.981
+    },
+    "unattributed_ai": {
+      "eval": 0.993,
+      "new": 0.992,
+      "old": 0.937
+    },
+    "web_photo_real": {
+      "eval": 0.001,
+      "new": 0.0,
+      "old": 0.002
+    }
+  },
+  "edge_cases": {
+    "grayscale_L": {
+      "ok": true,
+      "tensor_shape": [
+        1,
+        3,
+        224,
+        224
+      ],
+      "score": 0.0,
+      "verdict": "LIKELY AUTHENTIC",
+      "face_detected": true
+    },
+    "rgba_png": {
+      "ok": true,
+      "tensor_shape": [
+        1,
+        3,
+        224,
+        224
+      ],
+      "score": 0.0,
+      "verdict": "LIKELY AUTHENTIC",
+      "face_detected": true
+    },
+    "tiny_64px": {
+      "ok": true,
+      "tensor_shape": [
+        1,
+        3,
+        224,
+        224
+      ],
+      "score": 0.0,
+      "verdict": "LIKELY AUTHENTIC",
+      "face_detected": true
+    },
+    "large_3000px": {
+      "ok": true,
+      "tensor_shape": [
+        1,
+        3,
+        224,
+        224
+      ],
+      "score": 0.0,
+      "verdict": "LIKELY AUTHENTIC",
+      "face_detected": true
+    },
+    "wide_1920x1080": {
+      "ok": true,
+      "tensor_shape": [
+        1,
+        3,
+        224,
+        224
+      ],
+      "score": 0.0001,
+      "verdict": "LIKELY AUTHENTIC",
+      "face_detected": false
+    },
+    "blank_gray": {
+      "ok": true,
+      "tensor_shape": [
+        1,
+        3,
+        224,
+        224
+      ],
+      "score": 0.0,
+      "verdict": "LIKELY AUTHENTIC",
+      "face_detected": false
+    }
+  },
+  "refuses_REAL_positive_checkpoint": true,
+  "refusal_message": "Checkpoint positive_class='REAL', expected 'FAKE'.",
+  "policy": {
+    "REAL_BELOW": 0.3,
+    "FAKE_AT_OR_ABOVE": 0.9,
+    "T": 1.5523
+  }
+}

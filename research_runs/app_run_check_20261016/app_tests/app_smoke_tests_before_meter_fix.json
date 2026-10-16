@@ -1,0 +1,264 @@
+{
+  "static": {
+    "inference_MODEL_PATH": "D:\\PROJECT\\VeriFace AI\\best_face_model.pth",
+    "model_sha256": "c9a5eb5ea0d082ad99b2039fb63290f6c94c28372fc2ee88c75c2837a1d0eb11",
+    "sha_matches_selected": true,
+    "app_MODEL_PATH_is_best_face_model": true,
+    "app_uses_inference_preprocess_and_load": true,
+    "app_has_no_whole_image_resize": true,
+    "policy_matches_app_policy_json": true,
+    "not_a_guaranteed_probability_wording": true,
+    "no_confidence_percent_wording_in_ui_text": true
+  },
+  "inference": {
+    "genuine_ffhq": {
+      "file": "dataset_images\\real-vs-fake\\train\\real\\00022.jpg",
+      "raw_score": 0.0058,
+      "calibrated_score": 0.035,
+      "verdict": "LIKELY AUTHENTIC",
+      "face_detected": true,
+      "num_faces": 1,
+      "expected": "LIKELY AUTHENTIC",
+      "pass": true
+    },
+    "manipulated_stylegan": {
+      "file": "dataset_images\\real-vs-fake\\valid\\fake\\007SMMOPYB.jpg",
+      "raw_score": 1.0,
+      "calibrated_score": 1.0,
+      "verdict": "LIKELY MANIPULATED",
+      "face_detected": true,
+      "num_faces": 1,
+      "expected": "LIKELY MANIPULATED",
+      "pass": true
+    },
+    "manipulated_stable_diffusion": {
+      "file": "dataset_images\\my_real_vs_ai_dataset\\my_real_vs_ai_dataset\\ai_images\\1024_woman_SD_0005.jpg",
+      "raw_score": 1.0,
+      "calibrated_score": 1.0,
+      "verdict": "LIKELY MANIPULATED",
+      "face_detected": true,
+      "num_faces": 1,
+      "expected": "LIKELY MANIPULATED",
+      "pass": true
+    },
+    "genuine_celebdf_real": {
+      "file": "dataset_images\\my_real_vs_ai_dataset\\my_real_vs_ai_dataset\\real\\celebdf_test_id16_0002_frame210_face9.jpg",
+      "raw_score": 0.0,
+      "calibrated_score": 0.0011,
+      "verdict": "LIKELY AUTHENTIC",
+      "face_detected": true,
+      "num_faces": 1,
+      "expected": "LIKELY AUTHENTIC",
+      "pass": true
+    },
+    "inconclusive_ffpp_original": {
+      "file": "dataset_images\\my_real_vs_ai_dataset\\my_real_vs_ai_dataset\\real\\real_016_0.jpg",
+      "raw_score": 0.4516,
+      "calibrated_score": 0.4688,
+      "verdict": "INCONCLUSIVE",
+      "face_detected": true,
+      "num_faces": 1,
+      "expected": "INCONCLUSIVE",
+      "pass": true
+    },
+    "noface_blank": {
+      "file": "research_runs\\app_run_check_20261016\\app_tests\\_noface_blank.png",
+      "raw_score": 0.0,
+      "calibrated_score": 0.0,
+      "verdict": "LIKELY AUTHENTIC",
+      "face_detected": false,
+      "num_faces": 0,
+      "expected": "NO FACE (app refuses)",
+      "pass": true
+    },
+    "noface_noise": {
+      "file": "research_runs\\app_run_check_20261016\\app_tests\\_noface_noise.png",
+      "raw_score": 0.3441,
+      "calibrated_score": 0.3976,
+      "verdict": "INCONCLUSIVE",
+      "face_detected": false,
+      "num_faces": 0,
+      "expected": "NO FACE (app refuses)",
+      "pass": true
+    }
+  },
+  "checkpoints": {
+    "REAL_positive": {
+      "refused": true,
+      "error": "ValueError: Checkpoint positive_class='REAL', expected 'FAKE'."
+    },
+    "bare_state_dict": {
+      "refused": true,
+      "error": "ValueError: Unsupported checkpoint format (expected a dict with 'state_dict')."
+    },
+    "wrong_architecture": {
+      "refused": true,
+      "error": "ValueError: backbone must be one of {'xception', 'efficientnet_b0'}, got 'resnet18'"
+    },
+    "missing_file": {
+      "refused": true,
+      "error": "FileNotFoundError: Checkpoint not found at 'C:\\Users\\anshu\\AppData\\Local\\Temp\\tmpxli3s0ih\\does_not_exist.pth'. Run train.py first."
+    }
+  },
+  "apptest": {
+    "genuine_ffhq": {
+      "exceptions_before_click": [],
+      "button_disabled": false,
+      "exceptions_after_click": [],
+      "errors": [],
+      "warnings": [],
+      "banners": [
+        "<div class=\"verdict-banner verdict-real\">&#10003; LIKELY AUTHENTIC</div>"
+      ],
+      "score_captions": [
+        "<div class=\"confidence-sub\">Manipulation score (calibrated on validation data) &mdash; not a guaranteed probability for this photo</div>"
+      ],
+      "metrics": {
+        "Calibrated score": "3.5%",
+        "Uncalibrated score": "0.6%",
+        "Raw logit": "-5.15"
+      },
+      "expected": "LIKELY AUTHENTIC",
+      "pass": true
+    },
+    "manipulated_stylegan": {
+      "exceptions_before_click": [],
+      "button_disabled": false,
+      "exceptions_after_click": [],
+      "errors": [],
+      "warnings": [],
+      "banners": [
+        "<div class=\"verdict-banner verdict-fake\">&#9888; LIKELY MANIPULATED</div>"
+      ],
+      "score_captions": [
+        "<div class=\"confidence-sub\">Manipulation score (calibrated on validation data) &mdash; not a guaranteed probability for this photo</div>"
+      ],
+      "metrics": {
+        "Calibrated score": "100.0%",
+        "Uncalibrated score": "100.0%",
+        "Raw logit": "+18.47"
+      },
+      "expected": "LIKELY MANIPULATED",
+      "pass": true
+    },
+    "manipulated_stable_diffusion": {
+      "exceptions_before_click": [],
+      "button_disabled": false,
+      "exceptions_after_click": [],
+      "errors": [],
+      "warnings": [],
+      "banners": [
+        "<div class=\"verdict-banner verdict-fake\">&#9888; LIKELY MANIPULATED</div>"
+      ],
+      "score_captions": [
+        "<div class=\"confidence-sub\">Manipulation score (calibrated on validation data) &mdash; not a guaranteed probability for this photo</div>"
+      ],
+      "metrics": {
+        "Calibrated score": "100.0%",
+        "Uncalibrated score": "100.0%",
+        "Raw logit": "+19.48"
+      },
+      "expected": "LIKELY MANIPULATED",
+      "pass": true
+    },
+    "genuine_celebdf_real": {
+      "exceptions_before_click": [],
+      "button_disabled": false,
+      "exceptions_after_click": [],
+      "errors": [],
+      "warnings": [],
+      "banners": [
+        "<div class=\"verdict-banner verdict-real\">&#10003; LIKELY AUTHENTIC</div>"
+      ],
+      "score_captions": [
+        "<div class=\"confidence-sub\">Manipulation score (calibrated on validation data) &mdash; not a guaranteed probability for this photo</div>"
+      ],
+      "metrics": {
+        "Calibrated score": "0.1%",
+        "Uncalibrated score": "0.0%",
+        "Raw logit": "-10.63"
+      },
+      "expected": "LIKELY AUTHENTIC",
+      "pass": true
+    },
+    "inconclusive_ffpp_original": {
+      "exceptions_before_click": [],
+      "button_disabled": false,
+      "exceptions_after_click": [],
+      "errors": [],
+      "warnings": [
+        "The uncalibrated score 0.45 lies between 0.30 and 0.90, where validation errors concentrate. Treat this result as undecided."
+      ],
+      "banners": [
+        "<div class=\"verdict-banner verdict-pending\">? INCONCLUSIVE</div>"
+      ],
+      "score_captions": [
+        "<div class=\"confidence-sub\">Manipulation score (calibrated on validation data) &mdash; not a guaranteed probability for this photo</div>"
+      ],
+      "metrics": {
+        "Calibrated score": "46.9%",
+        "Uncalibrated score": "45.2%",
+        "Raw logit": "-0.19"
+      },
+      "expected": "INCONCLUSIVE",
+      "pass": true
+    },
+    "noface_blank": {
+      "exceptions_before_click": [],
+      "button_disabled": true,
+      "exceptions_after_click": [],
+      "errors": [
+        "No human face detected. Please upload a clear face portrait."
+      ],
+      "warnings": [],
+      "banners": [
+        "<div class=\"verdict-banner verdict-pending\">CANNOT VERIFY &mdash; NO FACE</div>"
+      ],
+      "score_captions": [],
+      "metrics": {},
+      "expected": "NO FACE (app refuses)",
+      "pass": true
+    },
+    "noface_noise": {
+      "exceptions_before_click": [],
+      "button_disabled": true,
+      "exceptions_after_click": [],
+      "errors": [
+        "No human face detected. Please upload a clear face portrait."
+      ],
+      "warnings": [],
+      "banners": [
+        "<div class=\"verdict-banner verdict-pending\">CANNOT VERIFY &mdash; NO FACE</div>"
+      ],
+      "score_captions": [],
+      "metrics": {},
+      "expected": "NO FACE (app refuses)",
+      "pass": true
+    },
+    "REAL_positive_ckpt": {
+      "exceptions_before_click": [],
+      "button_disabled": true,
+      "exceptions_after_click": [],
+      "errors": [
+        "Model Unavailable: Checkpoint positive_class='REAL', expected 'FAKE'."
+      ],
+      "warnings": [],
+      "banners": [
+        "<div class=\"verdict-banner verdict-pending\">MODEL UNAVAILABLE</div>"
+      ],
+      "score_captions": [],
+      "metrics": {},
+      "expected": "Model Unavailable error, no verdict",
+      "pass": true
+    }
+  },
+  "meta": {
+    "backbone": "efficientnet_b0",
+    "model_type": "vision",
+    "epoch": 7,
+    "positive_class": "FAKE",
+    "input_size": 224
+  },
+  "failures": [],
+  "all_pass": true
+}

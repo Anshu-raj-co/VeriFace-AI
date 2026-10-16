@@ -1,0 +1,34 @@
+%% VeriFace AI — data, training, evaluation and research workflow (as recorded in RESEARCH.md, 2026-10-16)
+flowchart TB
+    classDef data fill:#F3F0FA,stroke:#6E56B5,color:#2A1E52
+    classDef step fill:#EAF7EE,stroke:#2E8B57,color:#0E3B22
+    classDef gate fill:#FFF4E0,stroke:#C98A1B,color:#4A3000
+    classDef out fill:#E8F1FF,stroke:#2F6FD0,color:#0B2A55
+    classDef neg fill:#FDECEC,stroke:#C0392B,color:#5A1010
+
+    RAW[("Raw images (not redistributed)<br/>Kaggle 140k real-vs-fake + GRAVEX-200K<br/>340,000 images")]:::data
+    AUD["audit_dataset.py<br/>provenance labels · MD5 + pHash + NCC dedup<br/>identity / video / duplicate groups"]:::step
+    SPLIT["StratifiedGroupKFold (10 folds → 8/1/1)<br/>164,760 kept · 0 group / MD5 / near-dup leaks"]:::gate
+    PRE["preprocess_data.py<br/>Haar face crop 256 px · JPEG re-encode q 60–100<br/>post-preprocessing metadata shortcut probe"]:::step
+    TRAIN["train.py — EfficientNet-B0 (ImageNet init)<br/>BCEWithLogits · AdamW 3e-4 / wd 0.01 · frozen stem, backbone LR ×0.3<br/>1-epoch warm-up + cosine · AMP · batch 16 · seed 42"]:::step
+    SEL{"Early stopping on val EER<br/>patience 3 · stopped after epoch 10"}:::gate
+    CK[("best_face_model.pth<br/>epoch 7 · val EER 2.62 %")]:::out
+    EVAL["evaluate.py --split test<br/>ROC-AUC · PR-AUC · EER · per-generator breakdown"]:::step
+
+    subgraph RESEARCH["Research studies · validation-only selection"]
+        direction TB
+        AUDIT["Generalisation audit<br/>E0 / E1 / E2 fine-tunes · error analysis"]:::step
+        S1["Stage 1<br/>label audit · app fix · LOFO ×4 + control<br/>J1 JPEG-aug vs E0 · CLIP / FFT probes · calibration"]:::step
+        PRED["Part 2 pre-declaration<br/>(written before test inference)"]:::gate
+        P2["Part 2 final test<br/>baseline primary · J1 secondary (clean, q50, q35)<br/>group bootstrap CIs"]:::step
+    end
+
+    REJ["Rejected / not selected<br/>E1, E2, CLIP probe, FFT probe, J1 (criteria not met)"]:::neg
+    FINAL[("Selected: baseline best_face_model.pth<br/>test ROC-AUC 0.9974 · EER 2.68 %")]:::out
+    POLICY[("app_policy.json<br/>bands 0.30 / 0.90 · T = 1.5523 (validation)")]:::out
+
+    RAW --> AUD --> SPLIT --> PRE --> TRAIN --> SEL --> CK --> EVAL
+    CK --> AUDIT --> S1 --> PRED --> P2 --> FINAL
+    S1 --> POLICY
+    S1 --> REJ
+    AUDIT --> REJ

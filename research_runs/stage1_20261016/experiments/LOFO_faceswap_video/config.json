@@ -1,0 +1,42 @@
+{
+  "init": "imagenet",
+  "out": "experiments\\LOFO_faceswap_video",
+  "epochs": 2.0,
+  "lr": 0.0003,
+  "warmup_frac": 0.1,
+  "batch_size": 16,
+  "exclude_generators": "celebdf_synthesis,dfdc_fake,ffpp_Deepfakes,ffpp_FaceSwap,ffpp_FaceShifter,ffpp_DeepFakeDetection",
+  "aug_jpeg": "",
+  "ckpt_every": 2000,
+  "max_steps": 0,
+  "val_limit": 0,
+  "resume": false,
+  "excluded_from_train": [
+    "celebdf_synthesis",
+    "dfdc_fake",
+    "ffpp_Deepfakes",
+    "ffpp_FaceSwap",
+    "ffpp_FaceShifter",
+    "ffpp_DeepFakeDetection"
+  ],
+  "steps": 15236,
+  "steps_per_epoch": 7618,
+  "n_train": 121901,
+  "n_val": 16441,
+  "seed": 42,
+  "init_epoch": 0,
+  "train_generators": [
+    "celebdf_real",
+    "celebdf_youtube_real",
+    "dfdc_real",
+    "ffhq",
+    "ffpp_Face2Face",
+    "ffpp_NeuralTextures",
+    "ffpp_original",
+    "stable_diffusion",
+    "stylegan",
+    "text_to_image_unknown",
+    "unattributed_ai",
+    "web_photo_real"
+  ]
+}

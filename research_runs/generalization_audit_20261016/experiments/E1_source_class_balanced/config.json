@@ -1,0 +1,32 @@
+{
+  "init": "D:\\PROJECT\\VeriFace AI\\best_face_model.pth",
+  "out": "experiments\\E1_source_class_balanced",
+  "weighting": "source_class_balanced",
+  "sampler": "uniform",
+  "epochs": 1.0,
+  "lr": 0.0001,
+  "batch_size": 16,
+  "ckpt_every": 1000,
+  "max_steps": 0,
+  "val_limit": 0,
+  "resume": false,
+  "steps": 8230,
+  "n_train": 131684,
+  "n_val": 16441,
+  "seed": 42,
+  "init_epoch": 7,
+  "loss_weight_by_cell": {
+    "celebdf|0": 0.7465,
+    "celebdf|1": 1.5144,
+    "dfdc|0": 1.919,
+    "dfdc|1": 0.6762,
+    "ffhq|0": 1.0,
+    "ffpp|0": 1.7849,
+    "ffpp|1": 0.6946,
+    "stable_diffusion|1": 1.0,
+    "stylegan|1": 1.0,
+    "text_to_image_unknown|1": 1.0,
+    "unattributed_ai|1": 1.0,
+    "web_photo_real|0": 1.0
+  }
+}

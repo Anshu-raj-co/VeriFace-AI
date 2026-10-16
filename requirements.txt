@@ -1,0 +1,20 @@
+# VeriFace AI dependencies, derived from the imports in the project's source files.
+# Versions in comments are the ones installed on the development machine (Windows 11, Python 3.13.5);
+# a clean install from this file on another machine has not been verified.
+#
+# Install PyTorch first, choosing the build for your hardware at https://pytorch.org/get-started/locally/
+# (development machine: torch 2.14.0+cu130, torchvision 0.29.0+cu130), then: pip install -r requirements.txt
+
+torch               # 2.14.0+cu130
+torchvision         # 0.29.0+cu130
+timm                # 1.0.29
+streamlit           # 1.56.0
+opencv-python       # 4.13.0.92
+pillow              # 12.2.0
+numpy               # 2.4.4
+pandas              # 3.0.2
+scikit-learn        # 1.7.1
+scipy               # 1.16.1   (audit_dataset.py)
+pyarrow             # 23.0.1   (audit_dataset.py parquet index cache)
+matplotlib          # 3.10.5
+tqdm                # 4.67.1

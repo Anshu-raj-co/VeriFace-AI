@@ -1,0 +1,43 @@
+{
+  "real_below": 0.3,
+  "fake_at_or_above": 0.9,
+  "temperature": 1.5523,
+  "source": "baseline val predictions, research_runs/generalization_audit_20261016/data/preds_baseline_val.csv",
+  "val_band_stats": [
+    {
+      "real_below": 0.3,
+      "fake_at_or_above": 0.9,
+      "uncertain_share": 0.047624840338178945,
+      "genuine_called_FAKE": 0.010277613703484938,
+      "fake_called_REAL": 0.006895687061183551,
+      "precision_of_FAKE_verdict": 0.9884768211920529,
+      "precision_of_REAL_verdict": 0.9932165762210163,
+      "ffpp_original_uncertain": 0.7272727272727273,
+      "ffpp_original_called_FAKE": 0.12237762237762238,
+      "ffhq_called_FAKE": 0.001696113074204947
+    }
+  ],
+  "crossfit_group_folds": {
+    "genuine_called_FAKE": [
+      0.007151370679380214,
+      0.01570996978851964,
+      0.004725339633786178,
+      0.01952662721893491,
+      0.004574042309891366
+    ],
+    "fake_called_REAL": [
+      0.0037243947858473,
+      0.011635027556644213,
+      0.005015673981191223,
+      0.007509386733416771,
+      0.00649772579597141
+    ],
+    "uncertain": [
+      0.062024931590148984,
+      0.04288321167883212,
+      0.037408759124087594,
+      0.06356447688564477,
+      0.03223844282238443
+    ]
+  }
+}

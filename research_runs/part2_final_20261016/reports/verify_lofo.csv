@@ -1,0 +1,6 @@
+run,epochs,steps_done,steps_planned,steps_per_epoch,complete_2_epochs,smoke_test,n_val,val_auc_recomputed,val_auc_summary,excluded_from_train,heldout_auc_vs_matched_real,heldout_tpr@0.5,no_heldout_generator_in_train
+LOFO_ALL_control,2.0,16460,16460,8230,True,False,16441,0.9962529422289312,0.9962529422289313,,,,
+LOFO_diffusion_t2i,2.0,15508,15508,7754,True,False,16441,0.9671612741354603,0.96716127413546,stable_diffusion;text_to_image_unknown;unattributed_ai,0.8123498978694219,0.1529535864978903,True
+LOFO_faceswap_video,2.0,15236,15236,7618,True,False,16441,0.9426289574571322,0.9426289574571322,celebdf_synthesis;dfdc_fake;ffpp_DeepFakeDetection;ffpp_Deepfakes;ffpp_FaceShifter;ffpp_FaceSwap,0.5911509747564256,0.19939577039274925,True
+LOFO_reenactment,2.0,16212,16212,8106,True,False,16441,0.9954646129765552,0.9954646129765552,ffpp_Face2Face;ffpp_NeuralTextures,0.5870272584558298,0.6775510204081633,True
+LOFO_gan,2.0,10668,10668,5334,True,False,16441,0.5843036566877242,0.5843036566877242,stylegan,0.5043378433634206,0.0,True

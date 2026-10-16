@@ -1,0 +1,521 @@
+{
+  "generated": "2026-10-15 14:59:17",
+  "phash_threshold": 4,
+  "csv_info": {
+    "gravex_csv_real_code": "1",
+    "gravex_folder_vs_csv_crosstab": {
+      "FAKE": {
+        "0": 100000,
+        "1": 0
+      },
+      "REAL": {
+        "0": 0,
+        "1": 100000
+      }
+    },
+    "gravex_csv_folder_label_conflicts": 0
+  },
+  "raw_stats": {
+    "per_source_label": {
+      "gravex_200k/FAKE": 100000,
+      "gravex_200k/REAL": 100000,
+      "kaggle_140k/FAKE": 70000,
+      "kaggle_140k/REAL": 70000
+    },
+    "per_generator": [
+      {
+        "source_dataset": "gravex_200k",
+        "generator": "augmented_copy",
+        "label": "FAKE",
+        "n": 4895
+      },
+      {
+        "source_dataset": "gravex_200k",
+        "generator": "augmented_copy",
+        "label": "REAL",
+        "n": 14
+      },
+      {
+        "source_dataset": "gravex_200k",
+        "generator": "celebdf_real",
+        "label": "REAL",
+        "n": 7235
+      },
+      {
+        "source_dataset": "gravex_200k",
+        "generator": "celebdf_synthesis",
+        "label": "FAKE",
+        "n": 11878
+      },
+      {
+        "source_dataset": "gravex_200k",
+        "generator": "celebdf_youtube_real",
+        "label": "REAL",
+        "n": 3421
+      },
+      {
+        "source_dataset": "gravex_200k",
+        "generator": "dfdc_fake",
+        "label": "FAKE",
+        "n": 20499
+      },
+      {
+        "source_dataset": "gravex_200k",
+        "generator": "dfdc_real",
+        "label": "REAL",
+        "n": 9448
+      },
+      {
+        "source_dataset": "gravex_200k",
+        "generator": "ffhq",
+        "label": "REAL",
+        "n": 68037
+      },
+      {
+        "source_dataset": "gravex_200k",
+        "generator": "ffpp_DeepFakeDetection",
+        "label": "FAKE",
+        "n": 884
+      },
+      {
+        "source_dataset": "gravex_200k",
+        "generator": "ffpp_Deepfakes",
+        "label": "FAKE",
+        "n": 2000
+      },
+      {
+        "source_dataset": "gravex_200k",
+        "generator": "ffpp_Face2Face",
+        "label": "FAKE",
+        "n": 2000
+      },
+      {
+        "source_dataset": "gravex_200k",
+        "generator": "ffpp_FaceShifter",
+        "label": "FAKE",
+        "n": 2000
+      },
+      {
+        "source_dataset": "gravex_200k",
+        "generator": "ffpp_FaceSwap",
+        "label": "FAKE",
+        "n": 2000
+      },
+      {
+        "source_dataset": "gravex_200k",
+        "generator": "ffpp_NeuralTextures",
+        "label": "FAKE",
+        "n": 2000
+      },
+      {
+        "source_dataset": "gravex_200k",
+        "generator": "ffpp_original",
+        "label": "REAL",
+        "n": 11101
+      },
+      {
+        "source_dataset": "gravex_200k",
+        "generator": "stable_diffusion",
+        "label": "FAKE",
+        "n": 7500
+      },
+      {
+        "source_dataset": "gravex_200k",
+        "generator": "stylegan",
+        "label": "FAKE",
+        "n": 41844
+      },
+      {
+        "source_dataset": "gravex_200k",
+        "generator": "text_to_image_unknown",
+        "label": "FAKE",
+        "n": 1000
+      },
+      {
+        "source_dataset": "gravex_200k",
+        "generator": "unattributed_ai",
+        "label": "FAKE",
+        "n": 1500
+      },
+      {
+        "source_dataset": "gravex_200k",
+        "generator": "web_photo_real",
+        "label": "REAL",
+        "n": 744
+      },
+      {
+        "source_dataset": "kaggle_140k",
+        "generator": "ffhq",
+        "label": "REAL",
+        "n": 70000
+      },
+      {
+        "source_dataset": "kaggle_140k",
+        "generator": "stylegan",
+        "label": "FAKE",
+        "n": 70000
+      }
+    ],
+    "resolution_top": {
+      "kaggle_140k": {
+        "256x256": 140000
+      },
+      "gravex_200k": {
+        "256x256": 200000
+      }
+    },
+    "aspect_ratio": {
+      "gravex_200k": {
+        "count": 200000.0,
+        "mean": 1.0,
+        "std": 0.0,
+        "min": 1.0,
+        "25%": 1.0,
+        "50%": 1.0,
+        "75%": 1.0,
+        "max": 1.0
+      },
+      "kaggle_140k": {
+        "count": 140000.0,
+        "mean": 1.0,
+        "std": 0.0,
+        "min": 1.0,
+        "25%": 1.0,
+        "50%": 1.0,
+        "75%": 1.0,
+        "max": 1.0
+      }
+    },
+    "format_mode": {
+      "JPEG/RGB": 340000
+    },
+    "file_size_and_jpeg_q_by_generator": [
+      {
+        "generator": "augmented_copy",
+        "n": 4909,
+        "median_kb": 8.6,
+        "median_jpeg_luma_q": 29.03125
+      },
+      {
+        "generator": "celebdf_real",
+        "n": 7235,
+        "median_kb": 5.2,
+        "median_jpeg_luma_q": 29.03125
+      },
+      {
+        "generator": "celebdf_synthesis",
+        "n": 11878,
+        "median_kb": 5.1,
+        "median_jpeg_luma_q": 29.03125
+      },
+      {
+        "generator": "celebdf_youtube_real",
+        "n": 3421,
+        "median_kb": 5.6,
+        "median_jpeg_luma_q": 29.03125
+      },
+      {
+        "generator": "dfdc_fake",
+        "n": 20499,
+        "median_kb": 5.0,
+        "median_jpeg_luma_q": 29.03125
+      },
+      {
+        "generator": "dfdc_real",
+        "n": 9448,
+        "median_kb": 5.1,
+        "median_jpeg_luma_q": 29.03125
+      },
+      {
+        "generator": "ffhq",
+        "n": 138037,
+        "median_kb": 20.7,
+        "median_jpeg_luma_q": 5.765625
+      },
+      {
+        "generator": "ffpp_DeepFakeDetection",
+        "n": 884,
+        "median_kb": 11.7,
+        "median_jpeg_luma_q": 29.03125
+      },
+      {
+        "generator": "ffpp_Deepfakes",
+        "n": 2000,
+        "median_kb": 10.8,
+        "median_jpeg_luma_q": 29.03125
+      },
+      {
+        "generator": "ffpp_Face2Face",
+        "n": 2000,
+        "median_kb": 10.8,
+        "median_jpeg_luma_q": 29.03125
+      },
+      {
+        "generator": "ffpp_FaceShifter",
+        "n": 2000,
+        "median_kb": 10.8,
+        "median_jpeg_luma_q": 29.03125
+      },
+      {
+        "generator": "ffpp_FaceSwap",
+        "n": 2000,
+        "median_kb": 10.9,
+        "median_jpeg_luma_q": 29.03125
+      },
+      {
+        "generator": "ffpp_NeuralTextures",
+        "n": 2000,
+        "median_kb": 10.8,
+        "median_jpeg_luma_q": 29.03125
+      },
+      {
+        "generator": "ffpp_original",
+        "n": 11101,
+        "median_kb": 11.0,
+        "median_jpeg_luma_q": 29.03125
+      },
+      {
+        "generator": "stable_diffusion",
+        "n": 7500,
+        "median_kb": 8.5,
+        "median_jpeg_luma_q": 29.03125
+      },
+      {
+        "generator": "stylegan",
+        "n": 111844,
+        "median_kb": 24.5,
+        "median_jpeg_luma_q": 5.765625
+      },
+      {
+        "generator": "text_to_image_unknown",
+        "n": 1000,
+        "median_kb": 10.4,
+        "median_jpeg_luma_q": 29.03125
+      },
+      {
+        "generator": "unattributed_ai",
+        "n": 1500,
+        "median_kb": 7.6,
+        "median_jpeg_luma_q": 29.03125
+      },
+      {
+        "generator": "web_photo_real",
+        "n": 744,
+        "median_kb": 7.8,
+        "median_jpeg_luma_q": 29.03125
+      }
+    ]
+  },
+  "same_name_overlap": {
+    "ffhq": {
+      "shared_filenames": 68037,
+      "identical_bytes": 0,
+      "phash_hamming_median": 0.0,
+      "phash_hamming_le_4": 68037,
+      "phash_hamming_le_10": 68037
+    },
+    "stylegan": {
+      "shared_filenames": 41844,
+      "identical_bytes": 0,
+      "phash_hamming_median": 0.0,
+      "phash_hamming_le_4": 41844,
+      "phash_hamming_le_10": 41844
+    },
+    "random_pairs_baseline": {
+      "median": 30.0,
+      "p0_1": 14.0,
+      "frac_le_4": 0.0,
+      "frac_le_10": 0.00025
+    }
+  },
+  "dedup_stats": {
+    "unreadable": 0,
+    "augmented_copy": 4909,
+    "unattributed_generator": 0,
+    "csv_folder_label_conflict": 0,
+    "md5_label_conflict": 0,
+    "md5_duplicate": 3,
+    "phash_same_generator_pairs": 441710,
+    "phash_cross_generator_same_label_pairs (kept, grouped)": 33290,
+    "phash_cross_label_pairs (kept, grouped)": 120501,
+    "phash_near_duplicate": 170328,
+    "phash_edges_crossing_identity_groups": 247887,
+    "  verified duplicates (NCC >= 0.95)": 69292,
+    "  rejected as hash collisions": 178595
+  },
+  "total_raw": 340000,
+  "total_removed": 175240,
+  "total_kept": 164760,
+  "split": {
+    "counts": {
+      "train": {
+        "REAL": 65993,
+        "FAKE": 65691,
+        "total": 131684
+      },
+      "val": {
+        "REAL": 8465,
+        "FAKE": 7976,
+        "total": 16441
+      },
+      "test": {
+        "REAL": 8522,
+        "FAKE": 8113,
+        "total": 16635
+      }
+    },
+    "n_groups": 138953,
+    "largest_group": 474,
+    "leak_checks": {
+      "group_id": 0,
+      "md5": 0,
+      "verified_near_dup_pairs_across_splits": 0
+    },
+    "per_generator": {
+      "celebdf_real": {
+        "test": 598,
+        "train": 4257,
+        "val": 616
+      },
+      "celebdf_synthesis": {
+        "test": 253,
+        "train": 3200,
+        "val": 385
+      },
+      "celebdf_youtube_real": {
+        "test": 252,
+        "train": 2235,
+        "val": 258
+      },
+      "dfdc_fake": {
+        "test": 442,
+        "train": 3383,
+        "val": 240
+      },
+      "dfdc_real": {
+        "test": 230,
+        "train": 1192,
+        "val": 156
+      },
+      "ffhq": {
+        "test": 7091,
+        "train": 55717,
+        "val": 7075
+      },
+      "ffpp_DeepFakeDetection": {
+        "test": 23,
+        "train": 230,
+        "val": 0
+      },
+      "ffpp_Deepfakes": {
+        "test": 133,
+        "train": 995,
+        "val": 123
+      },
+      "ffpp_Face2Face": {
+        "test": 131,
+        "train": 988,
+        "val": 123
+      },
+      "ffpp_FaceShifter": {
+        "test": 132,
+        "train": 988,
+        "val": 120
+      },
+      "ffpp_FaceSwap": {
+        "test": 135,
+        "train": 987,
+        "val": 125
+      },
+      "ffpp_NeuralTextures": {
+        "test": 130,
+        "train": 985,
+        "val": 122
+      },
+      "ffpp_original": {
+        "test": 278,
+        "train": 2013,
+        "val": 286
+      },
+      "stable_diffusion": {
+        "test": 749,
+        "train": 6000,
+        "val": 750
+      },
+      "stylegan": {
+        "test": 5785,
+        "train": 46328,
+        "val": 5790
+      },
+      "text_to_image_unknown": {
+        "test": 50,
+        "train": 407,
+        "val": 49
+      },
+      "unattributed_ai": {
+        "test": 150,
+        "train": 1200,
+        "val": 149
+      },
+      "web_photo_real": {
+        "test": 73,
+        "train": 579,
+        "val": 74
+      }
+    }
+  },
+  "probe": [
+    {
+      "feature_set": "metadata (w, h, file size, aspect)",
+      "model": "logistic_regression",
+      "n_train": 131684,
+      "n_test": 16635,
+      "accuracy": 0.5583,
+      "balanced_accuracy": 0.5536,
+      "roc_auc": 0.5689,
+      "majority_baseline": 0.5123,
+      "verdict": "ok (near chance)"
+    },
+    {
+      "feature_set": "metadata (w, h, file size, aspect)",
+      "model": "decision_tree",
+      "n_train": 131684,
+      "n_test": 16635,
+      "accuracy": 0.58,
+      "balanced_accuracy": 0.5756,
+      "roc_auc": 0.6075,
+      "majority_baseline": 0.5123,
+      "verdict": "ok (near chance)"
+    },
+    {
+      "feature_set": "metadata + JPEG quant table",
+      "model": "logistic_regression",
+      "n_train": 131684,
+      "n_test": 16635,
+      "accuracy": 0.5662,
+      "balanced_accuracy": 0.5595,
+      "roc_auc": 0.5501,
+      "majority_baseline": 0.5123,
+      "verdict": "ok (near chance)"
+    },
+    {
+      "feature_set": "metadata + JPEG quant table",
+      "model": "decision_tree",
+      "n_train": 131684,
+      "n_test": 16635,
+      "accuracy": 0.58,
+      "balanced_accuracy": 0.5755,
+      "roc_auc": 0.6074,
+      "majority_baseline": 0.5123,
+      "verdict": "ok (near chance)"
+    }
+  ],
+  "caveats": [
+    "pHash cannot see horizontal flips or crops; GRAVEX pre-augmented copies are therefore dropped by filename provenance (augmentation_log.csv lists their originals), not by hashing.",
+    "Celeb-DF fakes are grouped by target identity only; the source-face identity may appear (as REAL video of that person) in another split. Linking both collapses Celeb-DF into a single group. Celeb-DF YouTube real clips carry no identity label, so a celebrity can appear in them and in another split.",
+    "DFDC fake videos cannot be linked to their real source video by filename; only pairs that are pixel-level duplicates (pHash + NCC check) are grouped, so a DFDC actor can still appear in multiple splits.",
+    "pHash edges linking two different identity groups are trusted only when NCC >= --min-ncc; weaker matches were verified to be collisions between different people (Celeb-DF, FFHQ vs StyleGAN).",
+    "Cross-label near-duplicate pairs are kept (both labels) but forced into the same split; review audit_reports/cross_label_near_duplicates.csv for possible label noise.",
+    "Diffusion coverage is small (stable_diffusion + text_to_image_unknown + unattributed_ai); per-generator metrics for these will have wide confidence intervals."
+  ]
+}

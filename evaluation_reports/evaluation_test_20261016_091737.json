@@ -1,0 +1,330 @@
+{
+  "project": "VeriFace AI",
+  "generated": "20261016_091737",
+  "split": "test",
+  "checkpoint": "D:\\PROJECT\\VeriFace AI\\best_face_model.pth",
+  "model_type": "vision",
+  "backbone": "efficientnet_b0",
+  "positive_class": "FAKE",
+  "n": 16635,
+  "roc_auc": 0.9973674621146454,
+  "pr_auc": 0.9973487600547417,
+  "eer": 0.02680941111864152,
+  "eer_threshold": 0.6412230134010315,
+  "at_0.5": {
+    "threshold": 0.5,
+    "accuracy": 0.9735497445145777,
+    "precision_fake": 0.9657642345514144,
+    "recall_fake (TPR)": 0.9805250831998028,
+    "f1_fake": 0.9730886850152906,
+    "false_positive_rate (REAL flagged)": 0.03309082375029336,
+    "confusion [tn, fp, fn, tp]": [
+      8240,
+      282,
+      158,
+      7955
+    ]
+  },
+  "at_eer_threshold": {
+    "threshold": 0.6412,
+    "accuracy": 0.9731890592125038,
+    "precision_fake": 0.9718153846153846,
+    "recall_fake (TPR)": 0.9732528041415013,
+    "f1_fake": 0.9725335632467053,
+    "false_positive_rate (REAL flagged)": 0.026871626378784323,
+    "confusion [tn, fp, fn, tp]": [
+      8293,
+      229,
+      217,
+      7896
+    ]
+  },
+  "breakdown": {
+    "source_dataset": [
+      {
+        "source_dataset": "gravex_200k",
+        "label": "REAL",
+        "n": 1431,
+        "detection_rate@0.5": 0.8322851153039832,
+        "detection_rate@eer": 0.8644304682040531,
+        "mean_prob_fake": 0.16155193746089935,
+        "auc_vs_all_real": null,
+        "eer_vs_all_real": null
+      },
+      {
+        "source_dataset": "kaggle_140k",
+        "label": "REAL",
+        "n": 7091,
+        "detection_rate@0.5": 0.9940769990128332,
+        "detection_rate@eer": 0.9950641658440277,
+        "mean_prob_fake": 0.009058426134288311,
+        "auc_vs_all_real": null,
+        "eer_vs_all_real": null
+      },
+      {
+        "source_dataset": "gravex_200k",
+        "label": "FAKE",
+        "n": 2328,
+        "detection_rate@0.5": 0.9398625429553265,
+        "detection_rate@eer": 0.915807560137457,
+        "mean_prob_fake": 0.9085811972618103,
+        "auc_vs_all_real": 0.9917985670401491,
+        "eer_vs_all_real": 0.04183779238050534
+      },
+      {
+        "source_dataset": "kaggle_140k",
+        "label": "FAKE",
+        "n": 5785,
+        "detection_rate@0.5": 0.9968885047536733,
+        "detection_rate@eer": 0.9963699222126189,
+        "mean_prob_fake": 0.9957525730133057,
+        "auc_vs_all_real": 0.9996084971593173,
+        "eer_vs_all_real": 0.009012100867813401
+      }
+    ],
+    "generator_family": [
+      {
+        "generator_family": "real",
+        "label": "REAL",
+        "n": 8522,
+        "detection_rate@0.5": 0.9669091762497066,
+        "detection_rate@eer": 0.9731283736212156,
+        "mean_prob_fake": 0.034664880484342575,
+        "auc_vs_all_real": null,
+        "eer_vs_all_real": null
+      },
+      {
+        "generator_family": "diffusion",
+        "label": "FAKE",
+        "n": 799,
+        "detection_rate@0.5": 0.9962453066332916,
+        "detection_rate@eer": 0.9962453066332916,
+        "mean_prob_fake": 0.9958266019821167,
+        "auc_vs_all_real": 0.9996723491785525,
+        "eer_vs_all_real": 0.009504811077211923
+      },
+      {
+        "generator_family": "face_reenactment",
+        "label": "FAKE",
+        "n": 261,
+        "detection_rate@0.5": 0.8659003831417624,
+        "detection_rate@eer": 0.7777777777777778,
+        "mean_prob_fake": 0.7681290507316589,
+        "auc_vs_all_real": 0.9823117268714465,
+        "eer_vs_all_real": 0.04616381670699504
+      },
+      {
+        "generator_family": "face_swap",
+        "label": "FAKE",
+        "n": 1118,
+        "detection_rate@0.5": 0.9087656529516994,
+        "detection_rate@eer": 0.8792486583184258,
+        "mean_prob_fake": 0.8670399785041809,
+        "auc_vs_all_real": 0.9873137987798811,
+        "eer_vs_all_real": 0.05015619889844196
+      },
+      {
+        "generator_family": "gan",
+        "label": "FAKE",
+        "n": 5785,
+        "detection_rate@0.5": 0.9968885047536733,
+        "detection_rate@eer": 0.9963699222126189,
+        "mean_prob_fake": 0.9957525730133057,
+        "auc_vs_all_real": 0.9996084971593173,
+        "eer_vs_all_real": 0.009012100867813401
+      },
+      {
+        "generator_family": "unknown_ai",
+        "label": "FAKE",
+        "n": 150,
+        "detection_rate@0.5": 1.0,
+        "detection_rate@eer": 1.0,
+        "mean_prob_fake": 0.9978609085083008,
+        "auc_vs_all_real": 0.9997911288429946,
+        "eer_vs_all_real": 0.010912931236798873
+      }
+    ],
+    "generator": [
+      {
+        "generator": "celebdf_real",
+        "label": "REAL",
+        "n": 598,
+        "detection_rate@0.5": 0.9765886287625418,
+        "detection_rate@eer": 0.9866220735785953,
+        "mean_prob_fake": 0.02999136410653591,
+        "auc_vs_all_real": null,
+        "eer_vs_all_real": null
+      },
+      {
+        "generator": "celebdf_youtube_real",
+        "label": "REAL",
+        "n": 252,
+        "detection_rate@0.5": 0.9682539682539683,
+        "detection_rate@eer": 0.9722222222222222,
+        "mean_prob_fake": 0.036233652383089066,
+        "auc_vs_all_real": null,
+        "eer_vs_all_real": null
+      },
+      {
+        "generator": "dfdc_real",
+        "label": "REAL",
+        "n": 230,
+        "detection_rate@0.5": 0.8565217391304348,
+        "detection_rate@eer": 0.8869565217391304,
+        "mean_prob_fake": 0.1430470049381256,
+        "auc_vs_all_real": null,
+        "eer_vs_all_real": null
+      },
+      {
+        "generator": "ffhq",
+        "label": "REAL",
+        "n": 7091,
+        "detection_rate@0.5": 0.9940769990128332,
+        "detection_rate@eer": 0.9950641658440277,
+        "mean_prob_fake": 0.009058426134288311,
+        "auc_vs_all_real": null,
+        "eer_vs_all_real": null
+      },
+      {
+        "generator": "ffpp_original",
+        "label": "REAL",
+        "n": 278,
+        "detection_rate@0.5": 0.3345323741007194,
+        "detection_rate@eer": 0.44964028776978415,
+        "mean_prob_fake": 0.6152738332748413,
+        "auc_vs_all_real": null,
+        "eer_vs_all_real": null
+      },
+      {
+        "generator": "web_photo_real",
+        "label": "REAL",
+        "n": 73,
+        "detection_rate@0.5": 1.0,
+        "detection_rate@eer": 1.0,
+        "mean_prob_fake": 0.002303453627973795,
+        "auc_vs_all_real": null,
+        "eer_vs_all_real": null
+      },
+      {
+        "generator": "celebdf_synthesis",
+        "label": "FAKE",
+        "n": 253,
+        "detection_rate@0.5": 0.9209486166007905,
+        "detection_rate@eer": 0.9051383399209486,
+        "mean_prob_fake": 0.9053976535797119,
+        "auc_vs_all_real": 0.9910475838865785,
+        "eer_vs_all_real": 0.046233278573104906
+      },
+      {
+        "generator": "dfdc_fake",
+        "label": "FAKE",
+        "n": 442,
+        "detection_rate@0.5": 0.8710407239819005,
+        "detection_rate@eer": 0.8642533936651584,
+        "mean_prob_fake": 0.8691251873970032,
+        "auc_vs_all_real": 0.9854475666388086,
+        "eer_vs_all_real": 0.06465618399436752
+      },
+      {
+        "generator": "ffpp_DeepFakeDetection",
+        "label": "FAKE",
+        "n": 23,
+        "detection_rate@0.5": 1.0,
+        "detection_rate@eer": 1.0,
+        "mean_prob_fake": 0.963212788105011,
+        "auc_vs_all_real": 0.996020529983776,
+        "eer_vs_all_real": 0.006571227411405773
+      },
+      {
+        "generator": "ffpp_Deepfakes",
+        "label": "FAKE",
+        "n": 133,
+        "detection_rate@0.5": 0.9624060150375939,
+        "detection_rate@eer": 0.9022556390977443,
+        "mean_prob_fake": 0.8624842762947083,
+        "auc_vs_all_real": 0.9885091748380573,
+        "eer_vs_all_real": 0.03780661463562688
+      },
+      {
+        "generator": "ffpp_Face2Face",
+        "label": "FAKE",
+        "n": 131,
+        "detection_rate@0.5": 0.9083969465648855,
+        "detection_rate@eer": 0.8549618320610687,
+        "mean_prob_fake": 0.808093249797821,
+        "auc_vs_all_real": 0.9847937354776412,
+        "eer_vs_all_real": 0.03838694998665329
+      },
+      {
+        "generator": "ffpp_FaceShifter",
+        "label": "FAKE",
+        "n": 132,
+        "detection_rate@0.5": 0.9166666666666666,
+        "detection_rate@eer": 0.8560606060606061,
+        "mean_prob_fake": 0.8198152780532837,
+        "auc_vs_all_real": 0.9855009849729398,
+        "eer_vs_all_real": 0.043417038253931
+      },
+      {
+        "generator": "ffpp_FaceSwap",
+        "label": "FAKE",
+        "n": 135,
+        "detection_rate@0.5": 0.9333333333333333,
+        "detection_rate@eer": 0.8592592592592593,
+        "mean_prob_fake": 0.8226065039634705,
+        "auc_vs_all_real": 0.985538084435057,
+        "eer_vs_all_real": 0.037176110633045656
+      },
+      {
+        "generator": "ffpp_NeuralTextures",
+        "label": "FAKE",
+        "n": 130,
+        "detection_rate@0.5": 0.823076923076923,
+        "detection_rate@eer": 0.7,
+        "mean_prob_fake": 0.7278575301170349,
+        "auc_vs_all_real": 0.979810625891358,
+        "eer_vs_all_real": 0.04951889227880779
+      },
+      {
+        "generator": "stable_diffusion",
+        "label": "FAKE",
+        "n": 749,
+        "detection_rate@0.5": 0.9959946595460614,
+        "detection_rate@eer": 0.9959946595460614,
+        "mean_prob_fake": 0.9955910444259644,
+        "auc_vs_all_real": 0.9996550199609022,
+        "eer_vs_all_real": 0.009425302734867644
+      },
+      {
+        "generator": "stylegan",
+        "label": "FAKE",
+        "n": 5785,
+        "detection_rate@0.5": 0.9968885047536733,
+        "detection_rate@eer": 0.9963699222126189,
+        "mean_prob_fake": 0.9957525730133057,
+        "auc_vs_all_real": 0.9996084971593173,
+        "eer_vs_all_real": 0.009012100867813401
+      },
+      {
+        "generator": "text_to_image_unknown",
+        "label": "FAKE",
+        "n": 50,
+        "detection_rate@0.5": 1.0,
+        "detection_rate@eer": 1.0,
+        "mean_prob_fake": 0.9993552565574646,
+        "auc_vs_all_real": 0.9999319408589532,
+        "eer_vs_all_real": 0.0017014785261675663
+      },
+      {
+        "generator": "unattributed_ai",
+        "label": "FAKE",
+        "n": 150,
+        "detection_rate@0.5": 1.0,
+        "detection_rate@eer": 1.0,
+        "mean_prob_fake": 0.9978609085083008,
+        "auc_vs_all_real": 0.9997911288429946,
+        "eer_vs_all_real": 0.010912931236798873
+      }
+    ]
+  }
+}

@@ -1,0 +1,58 @@
+[
+  {
+    "model": "E1_source_class_balanced",
+    "ffpp_fpr_drop_ge_15pp_vs_E0": false,
+    "within_ffpp_auc_ge_E0_minus_0.02": true,
+    "val_eer_le_baseline_plus_0.5pp": true,
+    "ffhq_fpr_increase_le_0.5pp": false,
+    "stylegan_tpr_drop_le_1.5pp": true,
+    "sd_tpr_drop_le_1.5pp": true,
+    "celebdf_synth_tpr_drop_le_1.5pp": true,
+    "balanced_acc_ge_baseline_minus_0.5pp": true,
+    "ALL_CRITERIA_MET": false,
+    "paired_diff_vs_E0_ci|fpr@0.5|ffpp_original": [
+      -0.19397773739209448,
+      -0.09849765258215964
+    ],
+    "paired_diff_vs_E0_ci|within_auc|ffpp": [
+      -0.003341403170051402,
+      0.0035601693011303977
+    ],
+    "paired_diff_vs_E0_ci|val_eer": [
+      0.0012302577943773985,
+      0.0035613619283931097
+    ],
+    "paired_diff_vs_E0_ci|tpr@0.5|ffpp_NeuralTextures": [
+      -0.20000000000000007,
+      -0.06792770543331839
+    ]
+  },
+  {
+    "model": "E2_video_x4",
+    "ffpp_fpr_drop_ge_15pp_vs_E0": false,
+    "within_ffpp_auc_ge_E0_minus_0.02": true,
+    "val_eer_le_baseline_plus_0.5pp": true,
+    "ffhq_fpr_increase_le_0.5pp": true,
+    "stylegan_tpr_drop_le_1.5pp": true,
+    "sd_tpr_drop_le_1.5pp": true,
+    "celebdf_synth_tpr_drop_le_1.5pp": true,
+    "balanced_acc_ge_baseline_minus_0.5pp": true,
+    "ALL_CRITERIA_MET": false,
+    "paired_diff_vs_E0_ci|fpr@0.5|ffpp_original": [
+      -0.027616242880707055,
+      0.06491404428904429
+    ],
+    "paired_diff_vs_E0_ci|within_auc|ffpp": [
+      -0.02603486813498732,
+      0.002501474478457432
+    ],
+    "paired_diff_vs_E0_ci|val_eer": [
+      -0.004382187039113733,
+      0.0007484019403456221
+    ],
+    "paired_diff_vs_E0_ci|tpr@0.5|ffpp_NeuralTextures": [
+      -0.013610699740836684,
+      0.04899040383846454
+    ]
+  }
+]

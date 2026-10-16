@@ -1,0 +1,93 @@
+{
+  "sanity_baseline_clean_vs_evaluate_py": {
+    "n_matched": 16635,
+    "max_abs_dprob": 1.119069288346708e-07,
+    "decisions_differ@0.5": 0,
+    "decisions_differ_app": 0
+  },
+  "primary_baseline_clean_evaluate_py": {
+    "n": 16635,
+    "n_real": 8522,
+    "n_fake": 8113,
+    "roc_auc": 0.9973674621146454,
+    "pr_auc": 0.9973487600547417,
+    "eer": 0.02680941111864152,
+    "accuracy@0.5": 0.9735497445145777,
+    "precision_fake@0.5": 0.9657642345514144,
+    "recall_fake@0.5": 0.9805250831998028,
+    "f1_fake@0.5": 0.9730886850152906,
+    "genuine_fpr@0.5": 0.03309082375029336,
+    "fake_miss@0.5": 0.019474916800197216,
+    "tn@0.5": 8240,
+    "fp@0.5": 282,
+    "fn@0.5": 158,
+    "tp@0.5": 7955,
+    "app_genuine_called_manipulated": 0.010326214503637644,
+    "app_genuine_inconclusive": 0.031565360244074164,
+    "app_genuine_called_authentic": 0.9581084252522882,
+    "app_fake_called_authentic": 0.013558486379884136,
+    "app_fake_inconclusive": 0.05448046345371626,
+    "app_fake_called_manipulated": 0.9319610501663996,
+    "app_inconclusive_share": 0.042741208295761945,
+    "app_precision_of_MANIPULATED": 0.9884952281343966,
+    "app_precision_of_AUTHENTIC": 0.9867069486404834,
+    "app_accuracy_on_decided": 0.9875659382064808,
+    "app_counts_real[auth,inc,man]": [
+      8165,
+      269,
+      88
+    ],
+    "app_counts_fake[auth,inc,man]": [
+      110,
+      442,
+      7561
+    ],
+    "ci95_group_bootstrap": {
+      "roc_auc": [
+        0.9956313342576671,
+        0.9986004411444268
+      ],
+      "eer": [
+        0.020186863166906006,
+        0.03458235879601377
+      ],
+      "accuracy@0.5": [
+        0.9653513913030836,
+        0.9805811236405982
+      ],
+      "genuine_fpr@0.5": [
+        0.02347179334217018,
+        0.043715176462901253
+      ],
+      "fake_miss@0.5": [
+        0.009292902146908881,
+        0.03313054006298503
+      ],
+      "app_genuine_called_manipulated": [
+        0.006280670137644124,
+        0.01492431901880175
+      ],
+      "app_fake_called_authentic": [
+        0.005112602933035036,
+        0.025967453661481874
+      ],
+      "app_inconclusive_share": [
+        0.03401821799072674,
+        0.05139062348804615
+      ]
+    },
+    "n_groups": 13991,
+    "ece_raw_15bin": 0.010290440686729047,
+    "ece_temperature_val_T1.5523_15bin": 0.0038921800604581965
+  },
+  "descriptive_jpeg_shift_test": {
+    "baseline": {
+      "stylegan_tpr_drop_q35": 0.018150388936905792,
+      "ffhq_fpr_rise_q35": 0.03525595825694542
+    },
+    "J1": {
+      "stylegan_tpr_drop_q35": 0.006050129645635338,
+      "ffhq_fpr_rise_q35": 0.03751233958538993
+    }
+  }
+}

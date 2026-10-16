@@ -1,0 +1,121 @@
+# VeriFace AI — files that must stay local.
+# Datasets, model weights, per-image outputs, feature arrays and raw logs are intentionally NOT published.
+# Ignoring a file only affects new commits; it does not remove anything already committed.
+
+# ---------------------------------------------------------------------------
+# Datasets (licensed third-party images; obtain from the original sources)
+# ---------------------------------------------------------------------------
+dataset_images/
+dataset_processed/
+data/
+datasets/
+*.zip
+*.tar
+*.tar.gz
+*.7z
+*.rar
+cleaned_metadata.csv
+AI_Classification-Project.csv
+
+# ---------------------------------------------------------------------------
+# Model weights and checkpoints (any location)
+# ---------------------------------------------------------------------------
+*.pth
+*.pt
+*.ckpt
+*.bin
+*.safetensors
+*.onnx
+*.h5
+*.keras
+*.pkl
+*.joblib
+*.npy
+*.npz
+*.tmp
+smoke_runs/
+
+# ---------------------------------------------------------------------------
+# Secrets and credentials
+# ---------------------------------------------------------------------------
+.env
+.env.*
+!.env.example
+kaggle.json
+*.pem
+*.key
+*.p12
+*.pfx
+credentials*.json
+secrets*.json
+.streamlit/secrets.toml
+
+# ---------------------------------------------------------------------------
+# Python, environments, caches, IDE / OS files
+# ---------------------------------------------------------------------------
+__pycache__/
+*.py[cod]
+.venv/
+venv/
+env/
+.ipynb_checkpoints/
+.pytest_cache/
+.mypy_cache/
+.ruff_cache/
+.cache/
+.vscode/
+.idea/
+.claude/
+*.swp
+Thumbs.db
+Desktop.ini
+.DS_Store
+
+# ---------------------------------------------------------------------------
+# Raw logs and per-image outputs (large, machine-specific, or list dataset files)
+# ---------------------------------------------------------------------------
+*.log
+*.exitcode
+*.parquet
+audit_reports/*.csv
+audit_reports/*.parquet
+evaluation_reports/predictions_*.csv
+training_reports/*.log
+
+# ---------------------------------------------------------------------------
+# research_runs/: allowlist — only reports, scripts, configs and aggregate plots are published
+# ---------------------------------------------------------------------------
+research_runs/**
+!research_runs/**/
+!research_runs/**/*.md
+!research_runs/**/scripts/*.py
+!research_runs/**/scripts/*.cmd
+!research_runs/**/reports/*.csv
+!research_runs/**/reports/*.json
+!research_runs/**/app_tests/*.json
+!research_runs/**/experiments/*/config.json
+!research_runs/**/experiments/*/summary.json
+!research_runs/**/experiments/*/history.csv
+!research_runs/*/experiment_results.csv
+!research_runs/**/data/*.sha256
+!research_runs/**/data/app.py.*
+!research_runs/**/plots/*.png
+# per-image tables inside reports/ (dataset file lists, not summaries)
+research_runs/**/reports/cross_label_pairs_pixel_check.csv
+research_runs/**/reports/gradcam_center_share_val.csv
+research_runs/**/reports/label_model_disagreement_candidates.csv
+# plots that show dataset faces (third-party images of real people)
+research_runs/**/plots/examples_*.png
+research_runs/**/plots/label_review_*.png
+research_runs/**/plots/gradcam_val_examples.png
+# smoke-test experiment folders
+research_runs/**/experiments/smoke_*/
+
+# ---------------------------------------------------------------------------
+# Generated documentation build outputs
+# ---------------------------------------------------------------------------
+docs/project_guide/build/preview/
+docs/project_guide/build/_diagram.html
+
+# Legacy URL-scraping script from an earlier dataset (not part of the current pipeline)
+download_images.py

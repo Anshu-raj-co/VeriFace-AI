@@ -1,0 +1,244 @@
+{
+  "checkpoint": {
+    "sha256": "c9a5eb5ea0d082ad99b2039fb63290f6c94c28372fc2ee88c75c2837a1d0eb11",
+    "meta": {
+      "backbone": "efficientnet_b0",
+      "model_type": "vision",
+      "epoch": 7,
+      "positive_class": "FAKE",
+      "input_size": 224
+    },
+    "keys": [
+      "backbone",
+      "config",
+      "epoch",
+      "eval_transform",
+      "input_size",
+      "model_type",
+      "positive_class",
+      "val_metrics"
+    ],
+    "n_params": 4008829
+  },
+  "labels": {
+    "checkpoint_positive_class_FAKE": {
+      "pass": true,
+      "value": "FAKE"
+    },
+    "metadata_REAL0_FAKE1": {
+      "pass": true,
+      "pairs": {
+        "('FAKE', 1)": 81780,
+        "('REAL', 0)": 82980
+      }
+    },
+    "score_meter_orientation": {
+      "pass": true
+    },
+    "n_rows": 164760,
+    "split_counts": {
+      "train": 131684,
+      "test": 16635,
+      "val": 16441
+    }
+  },
+  "preprocess": {
+    "tensor_equals_independent_eval_transform": {
+      "pass": true,
+      "n": 51,
+      "n_ok": 51
+    },
+    "model_view_is_denormalised_input": {
+      "pass": true,
+      "n": 51,
+      "n_ok": 51
+    },
+    "crop_geometry_matches_preprocess_data": {
+      "pass": true,
+      "n": 51,
+      "n_ok": 51,
+      "mismatches": []
+    },
+    "eval_transform_has_no_resize": {
+      "pass": true,
+      "transform": "Compose(\n    CenterCrop(size=(224, 224))\n    ToTensor()\n    Normalize(mean=[0.485, 0.456, 0.406], std=[0.229, 0.224, 0.225])\n)"
+    }
+  },
+  "calibration": {
+    "formula_sigmoid_logit_over_T": {
+      "pass": true,
+      "T": 1.5523
+    },
+    "half_at_zero_and_monotone": {
+      "pass": true
+    },
+    "verdict_bands_on_raw_score": {
+      "pass": true
+    },
+    "calibrated_at_band_edges": {
+      "raw_0.30": 0.36683153042244626,
+      "raw_0.90": 0.804626310455014
+    }
+  },
+  "gradcam": {
+    "gx_fake_1024_man_men_0012": {
+      "pass": true,
+      "target_layer": "conv_head",
+      "target_out_channels": 1280,
+      "cam_shape": [
+        7,
+        7
+      ],
+      "cam_max": 1.0,
+      "logit_gradcam": 10.530973434448242,
+      "logit_predict": 10.530973434448242,
+      "hooks_removed": true
+    },
+    "gx_fake_1024_man_men_0017": {
+      "pass": true,
+      "target_layer": "conv_head",
+      "target_out_channels": 1280,
+      "cam_shape": [
+        7,
+        7
+      ],
+      "cam_max": 1.0,
+      "logit_gradcam": 10.637046813964844,
+      "logit_predict": 10.637046813964844,
+      "hooks_removed": true
+    },
+    "gx_fake_1024_man_men_0029": {
+      "pass": true,
+      "target_layer": "conv_head",
+      "target_out_channels": 1280,
+      "cam_shape": [
+        7,
+        7
+      ],
+      "cam_max": 1.0,
+      "logit_gradcam": 17.65441131591797,
+      "logit_predict": 17.65441131591797,
+      "hooks_removed": true
+    },
+    "gx_fake_1024_woman_SD_0005": {
+      "pass": true,
+      "target_layer": "conv_head",
+      "target_out_channels": 1280,
+      "cam_shape": [
+        7,
+        7
+      ],
+      "cam_max": 1.0,
+      "logit_gradcam": 19.48349380493164,
+      "logit_predict": 19.48349380493164,
+      "hooks_removed": true
+    },
+    "gx_fake_1024_woman_SD_0016": {
+      "pass": true,
+      "target_layer": "conv_head",
+      "target_out_channels": 1280,
+      "cam_shape": [
+        7,
+        7
+      ],
+      "cam_max": 1.0,
+      "logit_gradcam": 22.21600914001465,
+      "logit_predict": 22.21600914001465,
+      "hooks_removed": true
+    },
+    "gx_fake_1024_woman_SD_0025": {
+      "pass": true,
+      "target_layer": "conv_head",
+      "target_out_channels": 1280,
+      "cam_shape": [
+        7,
+        7
+      ],
+      "cam_max": 1.0,
+      "logit_gradcam": 12.137212753295898,
+      "logit_predict": 12.137212753295898,
+      "hooks_removed": true
+    }
+  },
+  "unusual_inputs": {
+    "grayscale_L": {
+      "pass": true,
+      "verdict": "LIKELY AUTHENTIC",
+      "raw": 0.0023,
+      "face_detected": true,
+      "crop_side": 256
+    },
+    "rgba": {
+      "pass": true,
+      "verdict": "INCONCLUSIVE",
+      "raw": 0.568,
+      "face_detected": true,
+      "crop_side": 256
+    },
+    "palette_P": {
+      "pass": true,
+      "verdict": "INCONCLUSIVE",
+      "raw": 0.6346,
+      "face_detected": true,
+      "crop_side": 256
+    },
+    "16bit_I;16": {
+      "pass": true,
+      "verdict": "INCONCLUSIVE",
+      "raw": 0.368,
+      "face_detected": false,
+      "crop_side": 256
+    },
+    "tiny_8x8": {
+      "pass": true,
+      "verdict": "INCONCLUSIVE",
+      "raw": 0.3172,
+      "face_detected": false,
+      "crop_side": 8
+    },
+    "very_large_4096": {
+      "pass": true,
+      "verdict": "INCONCLUSIVE",
+      "raw": 0.4286,
+      "face_detected": true,
+      "crop_side": 4096
+    },
+    "wide_panorama_2000x200": {
+      "pass": true,
+      "verdict": "LIKELY MANIPULATED",
+      "raw": 0.9795,
+      "face_detected": false,
+      "crop_side": 200
+    }
+  },
+  "apptest": {
+    "corrupt_upload_refused": {
+      "pass": true,
+      "button_disabled": true,
+      "exceptions": [],
+      "errors": [
+        "Could not read image: cannot identify image file <__main__._Up object at 0x0000025D667076F0>"
+      ],
+      "banners": [],
+      "images": 0,
+      "metrics": {}
+    },
+    "rgba_png_face_runs_with_gradcam": {
+      "pass": true,
+      "button_disabled": false,
+      "exceptions": [],
+      "errors": [],
+      "banners": [
+        "<div class=\"verdict-banner verdict-pending\">? INCONCLUSIVE</div>"
+      ],
+      "images": 3,
+      "metrics": {
+        "Calibrated score": "54.4%",
+        "Uncalibrated score": "56.8%",
+        "Raw logit": "+0.27"
+      }
+    }
+  },
+  "failures": [],
+  "all_pass": true
+}

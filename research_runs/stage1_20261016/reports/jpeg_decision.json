@@ -1,0 +1,25 @@
+{
+  "stylegan_tpr_drop_q35": {
+    "E0": 0.004490500863557845,
+    "J1": 0.004145077720207224,
+    "baseline": 0.01882556131260793
+  },
+  "ffhq_fpr_rise_q35": {
+    "E0": 0.06869257950530035,
+    "J1": 0.04042402826855124,
+    "baseline": 0.03915194346289753
+  },
+  "J1_stylegan_drop_le_half_E0": false,
+  "J1_ffhq_rise_le_half_E0": false,
+  "J1_clean_eer_le_E0_plus_0.3pp": true,
+  "J1_within_ffpp_ge_E0_minus_0.02": true,
+  "J1_ALL_CRITERIA_MET": false,
+  "paired_ci_J1_minus_E0_q35|val_eer": [
+    -0.014436831908132736,
+    -0.00942704881015331
+  ],
+  "paired_ci_J1_minus_E0_q35|real_fpr@0.5": [
+    -0.03635978631224858,
+    -0.027598413710849087
+  ]
+}

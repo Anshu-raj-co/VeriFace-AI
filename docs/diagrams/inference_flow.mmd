@@ -1,0 +1,33 @@
+%% VeriFace AI — end-to-end inference flow (app.py -> inference.py -> face_utils.py -> model.py)
+%% Thresholds and temperature: research_runs/stage1_20261016/reports/app_policy.json (fitted on validation only).
+sequenceDiagram
+    autonumber
+    actor User
+    participant App as app.py (Streamlit UI)
+    participant Inf as inference.py
+    participant Face as face_utils.crop_face_square
+    participant Net as EfficientNet-B0 classifier
+    participant CAM as Grad-CAM (app.py)
+
+    Note over App,Inf: On first load: load_checkpoint(best_face_model.pth)<br/>refuses missing file, bare state_dict, wrong backbone, positive_class != FAKE
+
+    User->>App: Upload JPG / JPEG / PNG
+    App->>App: PIL open, convert to RGB (unreadable file -> error, no analysis)
+    App->>Inf: preprocess(image)
+    Inf->>Face: Haar cascade on a <=512 px copy (min face 40 px)
+    alt no face detected
+        Face-->>App: face_detected = False
+        App-->>User: CANNOT VERIFY — NO FACE (Run button disabled)
+    else face detected
+        Face-->>Inf: square crop, 1.8x detector box, resized to 256 x 256
+        Inf->>Inf: CenterCrop 224, ToTensor, ImageNet normalisation
+        User->>App: Run Authenticity Audit
+        App->>CAM: forward + backward on the logit
+        CAM->>Net: hooks on the last Conv2d layer
+        Net-->>CAM: logit (FAKE = 1) and 7 x 7 activation map
+        CAM-->>App: logit, normalised heatmap
+        App->>Inf: decide(sigmoid(logit)), calibrated_score(logit)
+        Note right of Inf: raw < 0.30 -> LIKELY AUTHENTIC<br/>0.30 <= raw < 0.90 -> INCONCLUSIVE<br/>raw >= 0.90 -> LIKELY MANIPULATED<br/>display = sigmoid(logit / 1.5523)
+        App-->>User: verdict, calibrated %, uncalibrated %, logit, meter, caveats
+        App-->>User: optional Grad-CAM overlay on the 224 px model input
+    end

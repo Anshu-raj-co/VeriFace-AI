@@ -1,0 +1,242 @@
+{
+  "generated": "2026-10-15 14:59:47",
+  "size": 256,
+  "jpeg_q_range": [
+    60,
+    100
+  ],
+  "n_processed": 2977,
+  "n_failed": 0,
+  "per_generator": [
+    {
+      "generator": "celebdf_real",
+      "label": "REAL",
+      "n": 98,
+      "face_detected": 0.9693877551020408,
+      "upscaled": 0.0,
+      "median_crop_side": 256.0,
+      "median_kb": 5.857421875
+    },
+    {
+      "generator": "celebdf_synthesis",
+      "label": "FAKE",
+      "n": 69,
+      "face_detected": 0.927536231884058,
+      "upscaled": 0.0,
+      "median_crop_side": 256.0,
+      "median_kb": 5.2900390625
+    },
+    {
+      "generator": "celebdf_youtube_real",
+      "label": "REAL",
+      "n": 48,
+      "face_detected": 0.9791666666666666,
+      "upscaled": 0.020833333333333332,
+      "median_crop_side": 256.0,
+      "median_kb": 5.978515625
+    },
+    {
+      "generator": "dfdc_fake",
+      "label": "FAKE",
+      "n": 73,
+      "face_detected": 0.9726027397260274,
+      "upscaled": 0.0273972602739726,
+      "median_crop_side": 256.0,
+      "median_kb": 5.9150390625
+    },
+    {
+      "generator": "dfdc_real",
+      "label": "REAL",
+      "n": 27,
+      "face_detected": 0.8518518518518519,
+      "upscaled": 0.037037037037037035,
+      "median_crop_side": 256.0,
+      "median_kb": 5.84765625
+    },
+    {
+      "generator": "ffhq",
+      "label": "REAL",
+      "n": 1271,
+      "face_detected": 0.9527930763178599,
+      "upscaled": 0.01730920535011802,
+      "median_crop_side": 256.0,
+      "median_kb": 13.1650390625
+    },
+    {
+      "generator": "ffpp_DeepFakeDetection",
+      "label": "FAKE",
+      "n": 5,
+      "face_detected": 0.2,
+      "upscaled": 0.2,
+      "median_crop_side": 256.0,
+      "median_kb": 15.05078125
+    },
+    {
+      "generator": "ffpp_Deepfakes",
+      "label": "FAKE",
+      "n": 22,
+      "face_detected": 0.7272727272727273,
+      "upscaled": 0.7272727272727273,
+      "median_crop_side": 114.5,
+      "median_kb": 8.90966796875
+    },
+    {
+      "generator": "ffpp_Face2Face",
+      "label": "FAKE",
+      "n": 21,
+      "face_detected": 0.6190476190476191,
+      "upscaled": 0.6190476190476191,
+      "median_crop_side": 142.0,
+      "median_kb": 9.271484375
+    },
+    {
+      "generator": "ffpp_FaceShifter",
+      "label": "FAKE",
+      "n": 21,
+      "face_detected": 0.7619047619047619,
+      "upscaled": 0.7619047619047619,
+      "median_crop_side": 130.0,
+      "median_kb": 10.1103515625
+    },
+    {
+      "generator": "ffpp_FaceSwap",
+      "label": "FAKE",
+      "n": 21,
+      "face_detected": 0.7142857142857143,
+      "upscaled": 0.7142857142857143,
+      "median_crop_side": 124.0,
+      "median_kb": 9.3310546875
+    },
+    {
+      "generator": "ffpp_NeuralTextures",
+      "label": "FAKE",
+      "n": 21,
+      "face_detected": 0.8095238095238095,
+      "upscaled": 0.8095238095238095,
+      "median_crop_side": 115.0,
+      "median_kb": 8.7138671875
+    },
+    {
+      "generator": "ffpp_original",
+      "label": "REAL",
+      "n": 46,
+      "face_detected": 0.8260869565217391,
+      "upscaled": 0.8260869565217391,
+      "median_crop_side": 135.0,
+      "median_kb": 10.064453125
+    },
+    {
+      "generator": "stable_diffusion",
+      "label": "FAKE",
+      "n": 135,
+      "face_detected": 0.9111111111111111,
+      "upscaled": 0.7555555555555555,
+      "median_crop_side": 191.0,
+      "median_kb": 9.7255859375
+    },
+    {
+      "generator": "stylegan",
+      "label": "FAKE",
+      "n": 1053,
+      "face_detected": 0.9990503323836657,
+      "upscaled": 0.003798670465337132,
+      "median_crop_side": 256.0,
+      "median_kb": 12.642578125
+    },
+    {
+      "generator": "text_to_image_unknown",
+      "label": "FAKE",
+      "n": 9,
+      "face_detected": 0.8888888888888888,
+      "upscaled": 0.1111111111111111,
+      "median_crop_side": 256.0,
+      "median_kb": 10.279296875
+    },
+    {
+      "generator": "unattributed_ai",
+      "label": "FAKE",
+      "n": 25,
+      "face_detected": 0.84,
+      "upscaled": 0.64,
+      "median_crop_side": 203.0,
+      "median_kb": 7.830078125
+    },
+    {
+      "generator": "web_photo_real",
+      "label": "REAL",
+      "n": 12,
+      "face_detected": 0.9166666666666666,
+      "upscaled": 0.0,
+      "median_crop_side": 256.0,
+      "median_kb": 8.35986328125
+    }
+  ],
+  "probe": [
+    {
+      "feature_set": "processed file (w, h, size, aspect)",
+      "model": "logistic_regression",
+      "n_train": 2387,
+      "n_test": 297,
+      "accuracy": 0.5017,
+      "balanced_accuracy": 0.5069,
+      "roc_auc": 0.536,
+      "majority_baseline": 0.5152,
+      "verdict": "ok (near chance)"
+    },
+    {
+      "feature_set": "processed file (w, h, size, aspect)",
+      "model": "decision_tree",
+      "n_train": 2387,
+      "n_test": 297,
+      "accuracy": 0.532,
+      "balanced_accuracy": 0.5259,
+      "roc_auc": 0.5359,
+      "majority_baseline": 0.5152,
+      "verdict": "ok (near chance)"
+    },
+    {
+      "feature_set": "JPEG quality factor",
+      "model": "logistic_regression",
+      "n_train": 2387,
+      "n_test": 297,
+      "accuracy": 0.4848,
+      "balanced_accuracy": 0.4853,
+      "roc_auc": 0.5084,
+      "majority_baseline": 0.5152,
+      "verdict": "ok (near chance)"
+    },
+    {
+      "feature_set": "JPEG quality factor",
+      "model": "decision_tree",
+      "n_train": 2387,
+      "n_test": 297,
+      "accuracy": 0.4613,
+      "balanced_accuracy": 0.4612,
+      "roc_auc": 0.4826,
+      "majority_baseline": 0.5152,
+      "verdict": "ok (near chance)"
+    },
+    {
+      "feature_set": "crop trace (face found, crop side, upscaled)",
+      "model": "logistic_regression",
+      "n_train": 2387,
+      "n_test": 297,
+      "accuracy": 0.5623,
+      "balanced_accuracy": 0.55,
+      "roc_auc": 0.5602,
+      "majority_baseline": 0.5152,
+      "verdict": "ok (near chance)"
+    },
+    {
+      "feature_set": "crop trace (face found, crop side, upscaled)",
+      "model": "decision_tree",
+      "n_train": 2387,
+      "n_test": 297,
+      "accuracy": 0.5522,
+      "balanced_accuracy": 0.5394,
+      "roc_auc": 0.5398,
+      "majority_baseline": 0.5152,
+      "verdict": "ok (near chance)"
+    }
+  ]
+}

@@ -1,0 +1,498 @@
+{
+  "split_counts": {
+    "FAKE": {
+      "test": 8113,
+      "train": 65691,
+      "val": 7976
+    },
+    "REAL": {
+      "test": 8522,
+      "train": 65993,
+      "val": 8465
+    }
+  },
+  "generator_split_counts": [
+    {
+      "generator": "celebdf_real",
+      "label": "REAL",
+      "test": 598,
+      "train": 4257,
+      "val": 616
+    },
+    {
+      "generator": "celebdf_synthesis",
+      "label": "FAKE",
+      "test": 253,
+      "train": 3200,
+      "val": 385
+    },
+    {
+      "generator": "celebdf_youtube_real",
+      "label": "REAL",
+      "test": 252,
+      "train": 2235,
+      "val": 258
+    },
+    {
+      "generator": "dfdc_fake",
+      "label": "FAKE",
+      "test": 442,
+      "train": 3383,
+      "val": 240
+    },
+    {
+      "generator": "dfdc_real",
+      "label": "REAL",
+      "test": 230,
+      "train": 1192,
+      "val": 156
+    },
+    {
+      "generator": "ffhq",
+      "label": "REAL",
+      "test": 7091,
+      "train": 55717,
+      "val": 7075
+    },
+    {
+      "generator": "ffpp_DeepFakeDetection",
+      "label": "FAKE",
+      "test": 23,
+      "train": 230,
+      "val": 0
+    },
+    {
+      "generator": "ffpp_Deepfakes",
+      "label": "FAKE",
+      "test": 133,
+      "train": 995,
+      "val": 123
+    },
+    {
+      "generator": "ffpp_Face2Face",
+      "label": "FAKE",
+      "test": 131,
+      "train": 988,
+      "val": 123
+    },
+    {
+      "generator": "ffpp_FaceShifter",
+      "label": "FAKE",
+      "test": 132,
+      "train": 988,
+      "val": 120
+    },
+    {
+      "generator": "ffpp_FaceSwap",
+      "label": "FAKE",
+      "test": 135,
+      "train": 987,
+      "val": 125
+    },
+    {
+      "generator": "ffpp_NeuralTextures",
+      "label": "FAKE",
+      "test": 130,
+      "train": 985,
+      "val": 122
+    },
+    {
+      "generator": "ffpp_original",
+      "label": "REAL",
+      "test": 278,
+      "train": 2013,
+      "val": 286
+    },
+    {
+      "generator": "stable_diffusion",
+      "label": "FAKE",
+      "test": 749,
+      "train": 6000,
+      "val": 750
+    },
+    {
+      "generator": "stylegan",
+      "label": "FAKE",
+      "test": 5785,
+      "train": 46328,
+      "val": 5790
+    },
+    {
+      "generator": "text_to_image_unknown",
+      "label": "FAKE",
+      "test": 50,
+      "train": 407,
+      "val": 49
+    },
+    {
+      "generator": "unattributed_ai",
+      "label": "FAKE",
+      "test": 150,
+      "train": 1200,
+      "val": 149
+    },
+    {
+      "generator": "web_photo_real",
+      "label": "REAL",
+      "test": 73,
+      "train": 579,
+      "val": 74
+    }
+  ],
+  "source_split_counts": [
+    {
+      "source_dataset": "gravex_200k",
+      "label": "FAKE",
+      "test": 2328,
+      "train": 19363,
+      "val": 2186
+    },
+    {
+      "source_dataset": "gravex_200k",
+      "label": "REAL",
+      "test": 1431,
+      "train": 10276,
+      "val": 1390
+    },
+    {
+      "source_dataset": "kaggle_140k",
+      "label": "FAKE",
+      "test": 5785,
+      "train": 46328,
+      "val": 5790
+    },
+    {
+      "source_dataset": "kaggle_140k",
+      "label": "REAL",
+      "test": 7091,
+      "train": 55717,
+      "val": 7075
+    }
+  ],
+  "family_split_counts": [
+    {
+      "generator_family": "diffusion",
+      "label": "FAKE",
+      "test": 799,
+      "train": 6407,
+      "val": 799
+    },
+    {
+      "generator_family": "face_reenactment",
+      "label": "FAKE",
+      "test": 261,
+      "train": 1973,
+      "val": 245
+    },
+    {
+      "generator_family": "face_swap",
+      "label": "FAKE",
+      "test": 1118,
+      "train": 9783,
+      "val": 993
+    },
+    {
+      "generator_family": "gan",
+      "label": "FAKE",
+      "test": 5785,
+      "train": 46328,
+      "val": 5790
+    },
+    {
+      "generator_family": "real",
+      "label": "REAL",
+      "test": 8522,
+      "train": 65993,
+      "val": 8465
+    },
+    {
+      "generator_family": "unknown_ai",
+      "label": "FAKE",
+      "test": 150,
+      "train": 1200,
+      "val": 149
+    }
+  ],
+  "train_label_prior_by_source_family": [
+    {
+      "family_source": "celebdf",
+      "n_train": 9692,
+      "train_frac_fake": 0.3301692117
+    },
+    {
+      "family_source": "dfdc",
+      "n_train": 4575,
+      "train_frac_fake": 0.7394535519
+    },
+    {
+      "family_source": "ffhq",
+      "n_train": 55717,
+      "train_frac_fake": 0.0
+    },
+    {
+      "family_source": "ffpp",
+      "n_train": 7186,
+      "train_frac_fake": 0.7198719733
+    },
+    {
+      "family_source": "stable_diffusion",
+      "n_train": 6000,
+      "train_frac_fake": 1.0
+    },
+    {
+      "family_source": "stylegan",
+      "n_train": 46328,
+      "train_frac_fake": 1.0
+    },
+    {
+      "family_source": "text_to_image_unknown",
+      "n_train": 407,
+      "train_frac_fake": 1.0
+    },
+    {
+      "family_source": "unattributed_ai",
+      "n_train": 1200,
+      "train_frac_fake": 1.0
+    },
+    {
+      "family_source": "web_photo_real",
+      "n_train": 579,
+      "train_frac_fake": 0.0
+    }
+  ],
+  "preprocessing_trace": [
+    {
+      "generator": "celebdf_real",
+      "label": "REAL",
+      "n": 5471,
+      "upscaled_frac": 0.0058490221,
+      "crop_side_median": 256.0,
+      "face_detected_frac": 0.9616157924,
+      "proc_kb_median": 5.7421875,
+      "raw_kb_median": 5.2275390625
+    },
+    {
+      "generator": "celebdf_synthesis",
+      "label": "FAKE",
+      "n": 3838,
+      "upscaled_frac": 0.0057321522,
+      "crop_side_median": 256.0,
+      "face_detected_frac": 0.9119332986,
+      "proc_kb_median": 5.546875,
+      "raw_kb_median": 5.0712890625
+    },
+    {
+      "generator": "celebdf_youtube_real",
+      "label": "REAL",
+      "n": 2745,
+      "upscaled_frac": 0.0061930783,
+      "crop_side_median": 256.0,
+      "face_detected_frac": 0.9624772313,
+      "proc_kb_median": 6.1005859375,
+      "raw_kb_median": 5.5556640625
+    },
+    {
+      "generator": "dfdc_fake",
+      "label": "FAKE",
+      "n": 4065,
+      "upscaled_frac": 0.018696187,
+      "crop_side_median": 256.0,
+      "face_detected_frac": 0.9151291513,
+      "proc_kb_median": 5.79296875,
+      "raw_kb_median": 4.9814453125
+    },
+    {
+      "generator": "dfdc_real",
+      "label": "REAL",
+      "n": 1578,
+      "upscaled_frac": 0.0209125475,
+      "crop_side_median": 256.0,
+      "face_detected_frac": 0.8960709759,
+      "proc_kb_median": 5.6108398438,
+      "raw_kb_median": 5.017578125
+    },
+    {
+      "generator": "ffhq",
+      "label": "REAL",
+      "n": 69883,
+      "upscaled_frac": 0.0200191749,
+      "crop_side_median": 256.0,
+      "face_detected_frac": 0.9507891762,
+      "proc_kb_median": 13.2373046875,
+      "raw_kb_median": 28.0546875
+    },
+    {
+      "generator": "ffpp_DeepFakeDetection",
+      "label": "FAKE",
+      "n": 253,
+      "upscaled_frac": 0.3280632411,
+      "crop_side_median": 256.0,
+      "face_detected_frac": 0.3280632411,
+      "proc_kb_median": 10.736328125,
+      "raw_kb_median": 10.9453125
+    },
+    {
+      "generator": "ffpp_Deepfakes",
+      "label": "FAKE",
+      "n": 1251,
+      "upscaled_frac": 0.7697841727,
+      "crop_side_median": 124.0,
+      "face_detected_frac": 0.7745803357,
+      "proc_kb_median": 9.310546875,
+      "raw_kb_median": 10.765625
+    },
+    {
+      "generator": "ffpp_Face2Face",
+      "label": "FAKE",
+      "n": 1242,
+      "upscaled_frac": 0.8252818035,
+      "crop_side_median": 119.0,
+      "face_detected_frac": 0.8293075684,
+      "proc_kb_median": 8.888671875,
+      "raw_kb_median": 10.7314453125
+    },
+    {
+      "generator": "ffpp_FaceShifter",
+      "label": "FAKE",
+      "n": 1240,
+      "upscaled_frac": 0.810483871,
+      "crop_side_median": 121.0,
+      "face_detected_frac": 0.814516129,
+      "proc_kb_median": 9.2001953125,
+      "raw_kb_median": 10.6811523438
+    },
+    {
+      "generator": "ffpp_FaceSwap",
+      "label": "FAKE",
+      "n": 1247,
+      "upscaled_frac": 0.7947072975,
+      "crop_side_median": 122.0,
+      "face_detected_frac": 0.7987169206,
+      "proc_kb_median": 9.12890625,
+      "raw_kb_median": 10.78515625
+    },
+    {
+      "generator": "ffpp_NeuralTextures",
+      "label": "FAKE",
+      "n": 1237,
+      "upscaled_frac": 0.8075990299,
+      "crop_side_median": 121.0,
+      "face_detected_frac": 0.8124494745,
+      "proc_kb_median": 9.0654296875,
+      "raw_kb_median": 10.70703125
+    },
+    {
+      "generator": "ffpp_original",
+      "label": "REAL",
+      "n": 2577,
+      "upscaled_frac": 0.8362436942,
+      "crop_side_median": 119.0,
+      "face_detected_frac": 0.838960031,
+      "proc_kb_median": 8.9267578125,
+      "raw_kb_median": 10.72265625
+    },
+    {
+      "generator": "stable_diffusion",
+      "label": "FAKE",
+      "n": 7499,
+      "upscaled_frac": 0.7699693292,
+      "crop_side_median": 191.0,
+      "face_detected_frac": 0.8937191626,
+      "proc_kb_median": 9.8515625,
+      "raw_kb_median": 8.53125
+    },
+    {
+      "generator": "stylegan",
+      "label": "FAKE",
+      "n": 57903,
+      "upscaled_frac": 0.0033849714,
+      "crop_side_median": 256.0,
+      "face_detected_frac": 0.9927637601,
+      "proc_kb_median": 13.0625,
+      "raw_kb_median": 27.560546875
+    },
+    {
+      "generator": "text_to_image_unknown",
+      "label": "FAKE",
+      "n": 506,
+      "upscaled_frac": 0.0415019763,
+      "crop_side_median": 256.0,
+      "face_detected_frac": 0.8280632411,
+      "proc_kb_median": 11.4018554688,
+      "raw_kb_median": 10.541015625
+    },
+    {
+      "generator": "unattributed_ai",
+      "label": "FAKE",
+      "n": 1499,
+      "upscaled_frac": 0.7518345564,
+      "crop_side_median": 187.0,
+      "face_detected_frac": 0.8352234823,
+      "proc_kb_median": 8.2138671875,
+      "raw_kb_median": 7.5927734375
+    },
+    {
+      "generator": "web_photo_real",
+      "label": "REAL",
+      "n": 726,
+      "upscaled_frac": 0.0192837466,
+      "crop_side_median": 256.0,
+      "face_detected_frac": 0.9366391185,
+      "proc_kb_median": 8.9091796875,
+      "raw_kb_median": 7.8413085938
+    }
+  ],
+  "train_upscaled_by_label": [
+    {
+      "label": "FAKE",
+      "False": 55885,
+      "True": 9806
+    },
+    {
+      "label": "REAL",
+      "False": 63146,
+      "True": 2847
+    }
+  ],
+  "train_fake_frac_given_upscaled": {
+    "False": 0.4694995421360822,
+    "True": 0.774994072551964
+  },
+  "leakage": {
+    "group_id_in_multiple_splits": 0,
+    "md5_in_multiple_splits": 0,
+    "phash_exact_in_multiple_splits": 0,
+    "phash_le4_pairs_across_splits_raw": 97,
+    "phash_le4_across_by_generator_pair": {
+      "('ffhq', 'stylegan')": 61,
+      "('stylegan', 'ffhq')": 16,
+      "('dfdc_real', 'dfdc_fake')": 11,
+      "('celebdf_youtube_real', 'celebdf_real')": 4,
+      "('celebdf_real', 'celebdf_synthesis')": 2,
+      "('celebdf_youtube_real', 'celebdf_synthesis')": 2,
+      "('celebdf_real', 'celebdf_youtube_real')": 1
+    },
+    "identity_or_video_keys_total": 1727,
+    "identity_or_video_keys_in_multiple_splits": 49,
+    "crossing_keys_by_prefix": {
+      "cdf_id": 49
+    },
+    "images_touching_crossing_keys_by_split_generator": {
+      "('test', 'celebdf_real')": 486,
+      "('test', 'celebdf_synthesis')": 506,
+      "('train', 'celebdf_real')": 3618,
+      "('train', 'celebdf_synthesis')": 5831,
+      "('val', 'celebdf_real')": 498,
+      "('val', 'celebdf_synthesis')": 733
+    },
+    "video_keys_in_multiple_splits": 0
+  },
+  "prediction_join": {
+    "pred_rows": 16635,
+    "unmatched": 0,
+    "path_mismatch": 0,
+    "label_mismatch": 0,
+    "non_test_rows": 0,
+    "test_rows_in_metadata": 16635
+  }
+}
